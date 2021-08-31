@@ -5,4 +5,4 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config:
-    SECRET_KEY = "I hate sand so much"
+    SECRET_KEY = "I hate sand"
