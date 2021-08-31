@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import logo from './Assets/Images/star_wars_logo.png'
 import { useState } from 'react';
 
 function App() {
@@ -16,16 +16,8 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Welcome to the front-end of this project!
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
         <p>The current time is {currentTime}.</p>
       </header>
     </div>
