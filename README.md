@@ -13,7 +13,7 @@ I intend on introducing the following functionality to this application:
 - User authentication & customizable profile management, including connecting with other users
 - Blog posts with additional functionality on their own
 - Creation of a new API that stores data on books read by users (or other non-film media), with user CRUD capabilities & automated blog posts associated with entries
-- Ability to interact with pre-existing SWAPI (only currently houses data related to films 1-7)
+- Ability to interact with pre-existing [SWAPI](https://swapi.dev/) (only currently houses data related to films 1-7)
 - Possible web scraping feature to display data from youtini.com (not as robust as finite user queries; possibly a random daily snippet of a character/planet/etc)
 
 
