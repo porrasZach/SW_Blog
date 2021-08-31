@@ -3,12 +3,18 @@ import uuid
 import secrets
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import LoginManager, UserMixin
 
+login_manager = LoginManager()
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
 
 db = SQLAlchemy()
 
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     id = db.Column(db.String, primary_key=True, unique=True)
     email = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
