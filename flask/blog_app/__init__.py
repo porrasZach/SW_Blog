@@ -7,6 +7,7 @@ from .models import db, User, login_manager
 from flask_migrate import Migrate
 import time
 
+
 app = Flask(__name__)
 
 app.config.from_object(Config)
