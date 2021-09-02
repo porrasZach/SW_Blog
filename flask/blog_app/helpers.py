@@ -14,6 +14,9 @@ def token_required(function_below):
         if not token:
             return jsonify({'message': 'Token is missing!'})
         
+        #########################################################################
+        ##### this error catch conditional needs to be clarified more to me #####
+        #########################################################################
         try:
             current_user_token = User.query.filter_by(token = token).first()
         except:
@@ -21,7 +24,8 @@ def token_required(function_below):
 
             if token != owner.token and secrets.compare_digest(token, owner.token):
                 return jsonify({'message': 'Invalid token!'})
-        
+        #########################################################################
+
         return function_below(current_user_token, *args, **kwargs)
     return decorated
 
