@@ -41,7 +41,7 @@ class User(db.Model, UserMixin):
         self.token = self.get_token(24)
 
     def set_id(self):
-        return str(uuid.uuid4)
+        return str(uuid.uuid4())
 
     def set_password(self, password):
         self.pw_hash = generate_password_hash(password)
@@ -70,7 +70,7 @@ class Book(db.Model):
         self.user_token = user_token
 
     def set_id(self):
-        return str(uuid.uuid4)
+        return str(uuid.uuid4())
 
 
 
