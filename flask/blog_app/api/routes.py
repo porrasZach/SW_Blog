@@ -7,12 +7,6 @@ api = Blueprint('api', __name__, url_prefix='/api')
 
 
 
-@api.route('/tester')
-def getRando():
-    return {'book': 'fake book'}
-
-
-
 @api.route('/books', methods = ['POST'])
 @token_required
 def create_book(current_user_token):

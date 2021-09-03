@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './styles.css';
 import reportWebVitals from './reportWebVitals';
-import Books from './App';
+import { Books } from './Components/Books';
+import { Home } from './Components/Home';
 
 ReactDOM.render(
   <React.StrictMode>
+    <Home title={'Books'}/>
     <Books />
   </React.StrictMode>,
   document.getElementById('root')
