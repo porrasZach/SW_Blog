@@ -5,11 +5,16 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { Books } from './Components/Books';
 import { Home } from './Components/Home';
+import { SideNav } from './Components/SideNav';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { sandTheme } from './Components/SideNav';
+
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-        <Home title={'Books'}/>
+        <Home title={'Mos Eisley Archives'}/>
+        <SideNav />
       <Switch>
         <Route path="/books">
           <Books />

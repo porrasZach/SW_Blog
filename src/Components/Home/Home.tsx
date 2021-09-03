@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import {
@@ -8,6 +8,7 @@ import {
     Route,
     Link
   } from "react-router-dom";
+import { sandTheme } from '../SideNav';
 
 interface Props{
     title: string;
@@ -24,6 +25,7 @@ const useStyles = makeStyles({
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         position: 'absolute',
+        zIndex: -1,
         padding: '0',
         margin: '0',
         display: 'flex',
@@ -38,6 +40,7 @@ const useStyles = makeStyles({
 
 export const Home = (props:Props) => {
     const classes = useStyles();
+    const theme = useTheme();
     return (
         <div className={classes.root}>
             <h1 className={classes.header}>mos eisley archives</h1>
