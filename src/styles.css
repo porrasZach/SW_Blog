@@ -3,3 +3,13 @@
     margin: 0;
     box-sizing: inherit;
 }
+
+@font-face {
+    font-family: 'Star Jedi';
+    src: url('../src/assets/Fonts/StarJedi.woff2') format('woff2'),
+        url('../src/assets/Fonts/StarJedi.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
