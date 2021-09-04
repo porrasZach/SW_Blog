@@ -61,7 +61,7 @@ class Book(db.Model):
     description = db.Column(db.String(500), nullable=False)
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable=False)
 
-    def __init__(self, title, author, release_year, description, user_token, id=''):
+    def __init__(self, title, author, release_year, description, user_token):
         self.id = self.set_id()
         self.title = title
         self.author = author

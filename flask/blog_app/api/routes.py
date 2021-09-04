@@ -15,17 +15,20 @@ def create_book(current_user_token):
     title = request.json['title']
     author = request.json['author']
     release_year = request.json['release_year']
-    date_created = current_user_token.date_created
+    # date_created = current_user_token.date_created
     description = request.json['description']
+
     user_token = current_user_token.token
 
-    book = Book(title, author, release_year, date_created, description, user_token=user_token)
+    print('made it this far!')
+    book = Book(title, author, release_year, description, user_token=user_token)
 
     db.session.add(book)
     db.session.commit()
 
     # passes back data as a dict object after added to db
     response = book_schema.dump(book)
+
     return jsonify(response)
 
 
