@@ -32,7 +32,7 @@ class User(db.Model, UserMixin):
     token = db.Column(db.String, nullable=False, unique=True)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
     book = db.relationship('Book', backref='owner', lazy=True)
-    posts = db.relationship('BlogPost', backref='uthor', lazy='dynamic')
+    posts = db.relationship('BlogPost', backref='author', lazy=True)
 
     def __init__(self, user_name, email, password, token='', id=''):
         self.id = self.set_id()
@@ -55,18 +55,17 @@ class User(db.Model, UserMixin):
 class Book(db.Model):
     id = db.Column(db.String, primary_key=True, unique=True)
     title = db.Column(db.String(200), nullable=False)
-    author = db.Column(db.String(150), unique=True, nullable=False)
+    author = db.Column(db.String(150), nullable=False)
     release_year = db.Column(db.String(4))
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
     description = db.Column(db.String(500), nullable=False)
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable=False)
 
-    def __init__(self, title, author, release_year, date_created, description, user_token, id=''):
+    def __init__(self, title, author, release_year, description, user_token, id=''):
         self.id = self.set_id()
         self.title = title
         self.author = author
         self.release_year = release_year
-        self.date_created = date_created
         self.description = description
         self.user_token = user_token
 
@@ -77,17 +76,14 @@ class Book(db.Model):
 class BlogPost(db.Model):
     id = db.Column(db.String, primary_key=True)
     post_title = db.Column(db.String(100), nullable=False)
-    book_reference = db.Column(db.String(200), nullable=True)
     body = db.Column(db.String(5000), nullable=False)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    user_id = db.Column(db.String, db.ForeignKey('user.id'))
+    user_id = db.Column(db.String, db.ForeignKey('user.id'), nullable=False)
 
-    def __init__(self, post_title, book_reference, body, timestamp, user_id, id=''):
+    def __init__(self, post_title, body, user_id, id=''):
         self.id = self.set_id()
         self.post_title = post_title
-        self.book_reference = book_reference
         self.body = body
-        self.timestamp = timestamp
         self.user_id = user_id
     
     def set_id(self):
@@ -103,3 +99,12 @@ class BookSchema(ma.Schema):
 
 book_schema = BookSchema()
 books_schema = BookSchema(many = True)
+
+
+
+class BlogPostSchema(ma.Schema):
+    class Meta:
+        fields = ['id', 'post_title', 'book_reference', 'body', 'timestamp']
+
+blog_post_schema = BlogPostSchema()
+blog_posts_schema = BlogPostSchema(many = True)

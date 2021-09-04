@@ -1,10 +1,9 @@
 from flask import Blueprint, jsonify, request, url_for
 from blog_app.helpers import token_required
-from blog_app.models import Book, book_schema, books_schema, db
+from blog_app.models import Book, BlogPost, book_schema, books_schema, db, blog_post_schema, blog_posts_schema
 
 
 api = Blueprint('api', __name__, url_prefix='/api')
-
 
 
 ############################
@@ -30,17 +29,6 @@ def create_book(current_user_token):
     return jsonify(response)
 
 
-
-@api.route('/books', methods = ['GET'])
-@token_required
-def get_all_books(current_user_token):
-    owner = current_user_token.token
-    books = Book.query.filter_by(user_token = owner).all()
-    response = books_schema.dump(books)
-    return jsonify(response)
-
-
-
 @api.route('/books/<id>', methods = ['GET'])
 @token_required
 def get_one_book(current_user_token, id):
@@ -51,6 +39,14 @@ def get_one_book(current_user_token, id):
     else:
         return jsonify({'message':"Can't find that book!"})
 
+
+@api.route('/books', methods = ['GET'])
+@token_required
+def get_all_books(current_user_token):
+    owner = current_user_token.token
+    books = Book.query.filter_by(user_token = owner).all()
+    response = books_schema.dump(books)
+    return jsonify(response)
 
 
 @api.route('/books/<id>', methods = ['POST'])
@@ -74,7 +70,6 @@ def update_book(current_user_token, id):
         return jsonify({'message':"Can't find that book!"})
 
 
-
 @api.route('/books/<id>', methods = ['DELETE'])
 @token_required
 def delete_book(current_user_token, id):
@@ -88,6 +83,54 @@ def delete_book(current_user_token, id):
         return jsonify({'message':"Can't find that book!"})
 
 
-
 #################################
 ##### BLOG POST CRUD ROUTES #####
+
+@api.route('/blog', methods = ['POST'])
+@token_required
+def create_blog_post(current_user_token):
+    post_title = request.json['post_title']
+    body = request.json['body']
+    user_id = current_user_token.id
+
+    blogPost = BlogPost(post_title, body, user_id=user_id)
+
+    db.session.add(blogPost)
+    db.session.commit()
+
+    # passes back data as a dict object after added to db
+    response = blog_post_schema.dump(blogPost)
+    return jsonify(response)
+
+
+@api.route('/blog/<id>', methods = ['GET'])
+@token_required
+def get_one_blog_post(current_user_token, id):
+    blog_post = BlogPost.query.get(id)
+    if blog_post:
+        response = blog_post_schema.dump(blog_post)
+        return jsonify(response)
+    else:
+        return jsonify({'message':"Can't find that blog post!"})
+
+
+@api.route('/blog', methods = ['GET'])
+@token_required
+def get_all_blog_posts(current_user_token):
+    author = current_user_token.id
+    blog_posts = BlogPost.query.filter_by(user_id = author).all()
+    response = blog_posts_schema.dump(blog_posts)
+    return jsonify(response)
+
+
+@api.route('/blog/<id>', methods = ['DELETE'])
+@token_required
+def delete_blog_post(current_user_token, id):
+    blog_post = BlogPost.query.get(id)
+    if blog_post:
+        db.session.delete(blog_post)
+        db.session.commit()
+        response = blog_post_schema.dump(blog_post)
+        return jsonify(response)
+    else:
+        return jsonify({'message':"Can't find that blog post!"})
