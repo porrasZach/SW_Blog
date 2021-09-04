@@ -32,6 +32,7 @@ class User(db.Model, UserMixin):
     token = db.Column(db.String, nullable=False, unique=True)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
     book = db.relationship('Book', backref='owner', lazy=True)
+    posts = db.relationship('BlogPost', backref='uthor', lazy='dynamic')
 
     def __init__(self, user_name, email, password, token='', id=''):
         self.id = self.set_id()
@@ -69,6 +70,26 @@ class Book(db.Model):
         self.description = description
         self.user_token = user_token
 
+    def set_id(self):
+        return str(uuid.uuid4())
+
+
+class BlogPost(db.Model):
+    id = db.Column(db.String, primary_key=True)
+    post_title = db.Column(db.String(100), nullable=False)
+    book_reference = db.Column(db.String(200), nullable=True)
+    body = db.Column(db.String(5000), nullable=False)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    user_id = db.Column(db.String, db.ForeignKey('user.id'))
+
+    def __init__(self, post_title, book_reference, body, timestamp, user_id, id=''):
+        self.id = self.set_id()
+        self.post_title = post_title
+        self.book_reference = book_reference
+        self.body = body
+        self.timestamp = timestamp
+        self.user_id = user_id
+    
     def set_id(self):
         return str(uuid.uuid4())
 

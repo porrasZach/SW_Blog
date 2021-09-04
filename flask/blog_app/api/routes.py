@@ -7,6 +7,9 @@ api = Blueprint('api', __name__, url_prefix='/api')
 
 
 
+############################
+##### BOOK CRUD ROUTES #####
+
 @api.route('/books', methods = ['POST'])
 @token_required
 def create_book(current_user_token):
@@ -83,3 +86,8 @@ def delete_book(current_user_token, id):
         return jsonify(response)
     else:
         return jsonify({'message':"Can't find that book!"})
+
+
+
+#################################
+##### BLOG POST CRUD ROUTES #####
