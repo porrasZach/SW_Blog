@@ -101,8 +101,7 @@ const useStyles = makeStyles((theme: Theme) =>
       height: '2rem'
     },
     toolbar:{
-      display: 'flex',
-      background: 'none'
+      display: 'flex'
     },
     toolbar_button: {
       marginLeft: 'auto',
@@ -178,7 +177,7 @@ export const SideNav = withRouter((props: SideNavProps) =>{
           <Typography variant="h6" noWrap>
             Archive Index
           </Typography>
-          <Button className={classes.toolbar_button}>Mos Eisley Blog</Button>
+          <Button className={classes.toolbar_button}>mos eisley chronicles</Button>
         </Toolbar>
         </AppBar>
         <MUIDrawer

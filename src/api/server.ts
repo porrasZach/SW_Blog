@@ -44,7 +44,7 @@ export const server_calls = {
         });
 
         if(!response.ok){
-            throw new Error('Failed to Create new data on server')
+            throw new Error('Failed to create new data on server')
         }
 
         return await response.json()

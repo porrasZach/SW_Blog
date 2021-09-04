@@ -10,6 +10,14 @@
         url('../src/assets/Fonts/StarJedi.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
 }
 
+@font-face {
+    font-family: 'StarJedi Special Edition';
+    src: url('./assets/Fonts/StarJediSpecialEdition.woff2') format('woff2'),
+        url('./assets/Fonts/StarJediSpecialEdition.woff') format('woff'),
+        url('./assets/Fonts/StarJediSpecialEdition.ttf') format('truetype'),
+        url('./assets/Fonts/StarJediSpecialEdition.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
