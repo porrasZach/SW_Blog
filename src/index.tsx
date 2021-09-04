@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { Books } from './Components/Books';
 import { Home } from './Components/Home';
 import { SideNav } from './Components/SideNav';
+import { SignIn } from './Components';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { sandTheme } from './Components/SideNav';
 
@@ -18,6 +19,11 @@ ReactDOM.render(
       <Switch>
         <Route path="/books">
           <Books />
+        </Route>
+      </Switch>
+      <Switch>
+        <Route path="/signin">
+          <SignIn />
         </Route>
       </Switch>
     </Router>
