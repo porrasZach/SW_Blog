@@ -19,8 +19,7 @@ import { Drawer as MUIDrawer,
 } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MenuIcon from '@material-ui/icons/Menu'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
+import saber_icon from '../../assets/Icons/light-saber.svg';
 import clsx from 'clsx';
 import { RouteComponentProps, withRouter, Switch, Route } from "react-router-dom";
 
@@ -29,7 +28,7 @@ import { RouteComponentProps, withRouter, Switch, Route } from "react-router-dom
 export const sandTheme = createTheme({
     palette: {
       primary: {
-        main: '#ff9800'
+        main: '#ff9900'
       },
       secondary: {
         main: '#ffc400'
@@ -55,7 +54,7 @@ export const sandTheme = createTheme({
 
 
 
-const drawerWidth = 120;
+const drawerWidth = 220;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -63,24 +62,10 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
     },
     appBar: {
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-    },
-    appBarShift: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
+      opacity: 0.1
     },
     menuButton: {
       marginRight: theme.spacing(2),
-    },
-    hide: {
-      display: 'none',
     },
     drawer: {
       width: drawerWidth,
@@ -94,7 +79,7 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       padding: theme.spacing(0, 1),
       ...theme.mixins.toolbar,
-      justifyContent: 'flex-end',
+      justifyContent: 'left',
     },
     content: {
       flexGrow: 1,
@@ -112,8 +97,12 @@ const useStyles = makeStyles((theme: Theme) =>
       }),
       marginLeft: 0,
     },
+    sabers: {
+      height: '2rem'
+    },
     toolbar:{
       display: 'flex',
+      background: 'none'
     },
     toolbar_button: {
       marginLeft: 'auto',
@@ -121,6 +110,15 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   }),
 );
+
+
+
+export const SaberIcon = () =>{
+  const classes = useStyles();
+  return (
+    <img src={saber_icon} className={classes.sabers} />
+  );
+}
 
 
 
@@ -172,31 +170,21 @@ export const SideNav = withRouter((props: SideNavProps) =>{
       <div className={classes.root}>
         <CssBaseline />
         <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-        >
-        {/* <Toolbar className={classes.toolbar}>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleNavOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
+        position="fixed">
+        <Toolbar className={classes.toolbar}>
+          <IconButton onClick={handleNavOpen}>
+            <SaberIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Dashboard
+            Archive Index
           </Typography>
-          <Button className={classes.toolbar_button}>Fuck Drones</Button>
-        </Toolbar> */}
+          <Button className={classes.toolbar_button}>Mos Eisley Blog</Button>
+        </Toolbar>
         </AppBar>
         <MUIDrawer
         className={classes.drawer}
         variant="persistent"
-        anchor="bottom"
+        anchor="top"
         open={open}
         classes={{
           paper: classes.drawerPaper,
@@ -204,7 +192,7 @@ export const SideNav = withRouter((props: SideNavProps) =>{
         >
           <div className={classes.drawerHeader}>
             <IconButton onClick={handleNavClose}>
-              {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            <SaberIcon />
             </IconButton>
           </div>
         <Divider />
@@ -212,7 +200,10 @@ export const SideNav = withRouter((props: SideNavProps) =>{
         {itemsList.map((item, index) => {
           const { text, onClick } = item;
           return (
-            <ListItem button key={text} onClick={onClick}>
+            <ListItem button key={text} onClick={() => {
+              handleNavClose();
+              onClick();
+            }}>
               <ListItemText primary={text} />
             </ListItem>
           );
