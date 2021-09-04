@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 export const SignIn = () =>{
-    const [username, setUsername] = useState('')
+    const [email, setUsername] = useState('')
     const [password, setPassword] = useState('')
   
     const classes = useStyles();
@@ -23,7 +23,7 @@ export const SignIn = () =>{
       event.preventDefault()
       console.log("You pressed login")
       let opts = {
-        'username': username,
+        'email': email,
         'password': password
       }
       console.log(opts)
@@ -60,9 +60,9 @@ export const SignIn = () =>{
         <form action="#">
           <div>
             <input type="text" 
-              placeholder="Username" 
+              placeholder="email" 
               onChange={handleUsernameChange}
-              value={username} 
+              value={email} 
             />
           </div>
           <div>

@@ -8,7 +8,7 @@ import {
     Route,
     Link
   } from "react-router-dom";
-import { sandTheme } from '../SideNav';
+import { sandTheme } from '../TopNav';
 
 interface Props{
     title: string;
@@ -32,7 +32,9 @@ const useStyles = makeStyles({
         justifyContent: 'center'
     },
     header:{
-        fontFamily: 'Star Jedi'
+        fontFamily: 'Star Jedi',
+        marginTop: '8rem',
+        fontSize: '3rem'
     }
 })
 

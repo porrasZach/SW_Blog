@@ -3,30 +3,34 @@ import ReactDOM from 'react-dom';
 import './styles.css';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import { Books } from './Components/Books';
+import { BookForm } from './Components/BookForm';
 import { Home } from './Components/Home';
-import { SideNav } from './Components/SideNav';
+import { TopNav } from './Components/TopNav';
 import { SignIn } from './Components';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { sandTheme } from './Components/SideNav';
+import { sandTheme } from './Components/TopNav';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-        <Home title={'Mos Eisley Archives'}/>
-        <SideNav />
-      <Switch>
-        <Route path="/books">
-          <Books />
-        </Route>
-      </Switch>
-      <Switch>
-        <Route path="/signin">
-          <SignIn />
-        </Route>
-      </Switch>
-    </Router>
+    <Provider store = {store}>
+      <Router>
+          <Home title={'Mos Eisley Archives'}/>
+          <TopNav />
+        <Switch>
+          <Route path="/books">
+            <BookForm />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/signin">
+            <SignIn />
+          </Route>
+        </Switch>
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

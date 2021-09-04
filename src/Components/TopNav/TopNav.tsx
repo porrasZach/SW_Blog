@@ -123,7 +123,7 @@ export const SaberIcon = () =>{
 
 // these objects give us the ability to access routes with a button
 //     within the scope of our router
-interface SideNavProps{
+interface TopNavProps{
     history: RouteComponentProps["history"]; 
     location: RouteComponentProps["location"];
     match: RouteComponentProps["match"];
@@ -131,7 +131,7 @@ interface SideNavProps{
 
 
 
-export const SideNav = withRouter((props: SideNavProps) =>{
+export const TopNav = withRouter((props: TopNavProps) =>{
   console.log(props)
   const { history } = props;
   const classes = useStyles();
@@ -177,7 +177,7 @@ export const SideNav = withRouter((props: SideNavProps) =>{
           <Typography variant="h6" noWrap>
             Archive Index
           </Typography>
-          <Button className={classes.toolbar_button}>mos eisley chronicles</Button>
+          <Button className={classes.toolbar_button}>Mos Eisley Blog</Button>
         </Toolbar>
         </AppBar>
         <MUIDrawer

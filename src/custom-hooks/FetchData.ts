@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { server_calls } from '../api';
 
-export const useGetAll = () => {
+export const useGetData = () => {
     // introduce State that we will manipulate
     const [bookData, setData] = useState<any>([]);
 
