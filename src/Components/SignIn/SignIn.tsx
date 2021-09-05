@@ -42,7 +42,7 @@ export const SignIn = () =>{
         'password': password
       };
 
-      fetch('/token', {
+      fetch('/signin', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json"
@@ -52,6 +52,7 @@ export const SignIn = () =>{
         .then(data => {
           console.log("this came from the backend", data);
           sessionStorage.setItem("token", data.token)
+          window.location.reload();
         })
         .catch(error => {
           console.error("There was an error!!!", error);

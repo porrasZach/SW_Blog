@@ -18,7 +18,7 @@ import { Drawer as MUIDrawer,
 import CssBaseline from '@material-ui/core/CssBaseline';
 import saber_icon from '../../assets/Icons/light-saber.svg';
 import { RouteComponentProps, withRouter} from "react-router-dom";
-
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 
 
@@ -190,6 +190,7 @@ export const TopNav = withRouter((props: TopNavProps) =>{
           <Button className={classes.toolbar_button}>The Outer Rim</Button>
         </Toolbar>
         </AppBar>
+        {/* <ClickAwayListener onClickAway={handleNavClose}> */}
         <MUIDrawer
         className={classes.drawer}
         variant="persistent"
@@ -219,6 +220,7 @@ export const TopNav = withRouter((props: TopNavProps) =>{
         })}
         </List>
         </MUIDrawer>
+        {/* </ClickAwayListener> */}
       </div>
     </ThemeProvider>
   )
