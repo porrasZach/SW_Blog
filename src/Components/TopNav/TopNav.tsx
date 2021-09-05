@@ -133,7 +133,8 @@ export const TopNav = withRouter((props: TopNavProps) =>{
   const { history } = props;
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  
+  const token = sessionStorage.getItem("token");
+
   const handleNavOpen = () =>{
     setOpen(true);
   };
@@ -141,7 +142,7 @@ export const TopNav = withRouter((props: TopNavProps) =>{
     setOpen(false);
   };
 
-  const itemsList = [ 
+  const noTokenList = [
     {
       text: 'Home',
       onClick: () => history.push('/')
@@ -151,13 +152,24 @@ export const TopNav = withRouter((props: TopNavProps) =>{
       onClick: () => history.push('/signin')
     },
     {
+      text: 'Mos Eisley Blog',
+      onClick: () => history.push('/blog')
+    }
+  ]
+
+  const tokenList = [ 
+    {
+      text: 'Home',
+      onClick: () => history.push('/')
+    },
+    {
       text: 'Log Out',
       onClick: () => {
         sessionStorage.removeItem("token");
-        console.log("Logged Out")
-        history.push('/signin')
-        window.location.reload(); 
         sessionStorage.setItem("token", '');
+        history.push('/signin')
+        window.location.reload();
+        console.log("Logged Out")
       }
     },
     {
@@ -206,19 +218,35 @@ export const TopNav = withRouter((props: TopNavProps) =>{
             </IconButton>
           </div>
         <Divider />
-        <List>
-        {itemsList.map((item, index) => {
-          const { text, onClick } = item;
-          return (
-            <ListItem button key={text} onClick={() => {
-              handleNavClose();
-              onClick();
-            }}>
-              <ListItemText primary={text} />
-            </ListItem>
-          );
-        })}
-        </List>
+        {token && token != "" && token != undefined ? (
+          <List>
+          {tokenList.map((item, index) => {
+            const { text, onClick } = item;
+            return (
+              <ListItem button key={text} onClick={() => {
+                handleNavClose();
+                onClick();
+              }}>
+                <ListItemText primary={text} />
+              </ListItem>
+            );
+          })}
+          </List>)
+          : (<List>
+          {noTokenList.map((item, index) => {
+            const { text, onClick } = item;
+            return (
+              <ListItem button key={text} onClick={() => {
+                handleNavClose();
+                onClick();
+              }}>
+                <ListItemText primary={text} />
+              </ListItem>
+            );
+          })}
+          </List>
+        )}
+        
         </MUIDrawer>
         {/* </ClickAwayListener> */}
       </div>

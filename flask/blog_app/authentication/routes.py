@@ -19,30 +19,30 @@ def create_token():
     logged_user = User.query.filter(User.email == email).first()
     if logged_user and check_password_hash(logged_user.password, password):
         login_user(logged_user)
+        access_token = create_access_token(identity=email)
+        return jsonify(access_token=access_token)
     else:
         return jsonify({"msg": "Bad username or password"}), 401
 
-    access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
+    
 
 
 
-
-
-@auth.route('/signin', methods=['GET', 'POST'])
-def signin():
-    form = UserLoginForm()
+@auth.route('/signup', methods=['GET', 'POST'])
+def signup():
+    form = UserSignupForm()
     if request.method == 'POST' and form.validate_on_submit():
+        user_name = form.user_name.data
         email = form.email.data
         password = form.password.data
-        print(email, password)
-        logged_user = User.query.filter(User.email == email).first()
-        if logged_user and check_password_hash(logged_user.password, password):
-            login_user(logged_user)
-            return redirect(url_for('site.home'))
-        else:
-            return redirect(url_for('auth.signin'))
-    return render_template('signin.html', form = form)
+        print(user_name, email, password)
+        new_user = User(user_name, email, password)
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect(url_for('auth.signin'))
+    return render_template('signup.html', form = form)
+
+
 
 @auth.route('/logout')
 @login_required

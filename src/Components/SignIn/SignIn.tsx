@@ -51,12 +51,14 @@ export const SignIn = () =>{
       }).then(response => response.json())
         .then(data => {
           console.log("this came from the backend", data);
-          sessionStorage.setItem("token", data.token)
-          window.location.reload();
+          {data.msg && data.msg == "Bad username or password" ? (
+            window.alert("Invalid, please try again!")
+          ) : (
+            sessionStorage.setItem("token", data.access_token)
+          )}
+          
         })
-        .catch(error => {
-          console.error("There was an error!!!", error);
-        });
+        window.location.reload();
       }
 
     const handleEmailChange = (
@@ -76,7 +78,7 @@ export const SignIn = () =>{
       <div className={classes.root}>
         <div className={classes.form}>
           <h2>Login</h2>
-          {token && token!==undefined ? ("You are logged in with a token") : (
+          {token && token != "" && token != undefined ? ("You are logged in with a token") : (
             <form action="#">
             <div>
               <input type="text" 
