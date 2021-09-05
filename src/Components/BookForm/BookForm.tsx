@@ -5,13 +5,29 @@ import { Input, LongInput } from '../sharedComponents/Input';
 import { Button, Card, makeStyles, createStyles, } from '@material-ui/core';
 import { server_calls } from '../../api';
 import { useGetData } from '../../custom-hooks';
+import desert_hills from '../../assets/Images/desert_hills1.jpg';
 
 
 const useStyles = makeStyles({
+    root:{
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)), url(${desert_hills});`,
+        width: '100%',
+        height: '100%',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        position: 'absolute',
+        zIndex: -1,
+        padding: '0',
+        margin: '0',
+        display: 'flex',
+        justifyContent: 'left'
+    },
     form:{
         marginTop: '15rem',
         width: '20rem',
-        marginLeft: '3rem',
+        height: '25rem',
+        marginLeft: '10rem',
         backgroundColor: 'rgb(255, 153, 0, .2)',
         border: '1px solid rgb(255, 153, 0, .5)',
         borderRadius: '5px',
@@ -48,6 +64,7 @@ export const BookForm = (props:BookFormProps) => {
     //     after changes have been made to the store
     const store = useStore();
 
+    // tester
     const title = useSelector<BookState>(state => state.title)
 
     // registers data & checks if data is of correct type
@@ -70,7 +87,7 @@ export const BookForm = (props:BookFormProps) => {
         }
     }
     return (
-        <div>
+        <div className={classes.root}>
                 <form className={classes.form} onSubmit = {handleSubmit(onSubmit)}>
                     <div>
                         {/* <label htmlFor="title">Book Title</label> */}

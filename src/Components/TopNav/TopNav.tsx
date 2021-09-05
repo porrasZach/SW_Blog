@@ -25,6 +25,7 @@ import { RouteComponentProps, withRouter, Switch, Route } from "react-router-dom
 
 
 
+
 export const sandTheme = createTheme({
     palette: {
       primary: {
@@ -155,8 +156,12 @@ export const TopNav = withRouter((props: TopNavProps) =>{
       onClick: () => history.push('/signin')
     },
     {
-      text: 'Your Books',
-      onClick: () => history.push('/books')
+      text: 'Add Books',
+      onClick: () => history.push('/add-books')
+    },
+    {
+      text: 'Your Archive',
+      onClick: () => history.push('/archive')
     },
     {
       text: 'Mos Eisley Blog',
@@ -177,7 +182,7 @@ export const TopNav = withRouter((props: TopNavProps) =>{
           <Typography variant="h6" noWrap>
             Archive Index
           </Typography>
-          <Button className={classes.toolbar_button}>Mos Eisley Blog</Button>
+          <Button className={classes.toolbar_button}>The Outer Rim</Button>
         </Toolbar>
         </AppBar>
         <MUIDrawer

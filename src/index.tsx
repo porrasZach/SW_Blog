@@ -7,26 +7,35 @@ import { BookForm } from './Components/BookForm';
 import { Home } from './Components/Home';
 import { TopNav } from './Components/TopNav';
 import { SignIn } from './Components';
+import { DataTable } from './Components';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-import { ThemeProvider } from '@material-ui/core/styles';
-import { sandTheme } from './Components/TopNav';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store = {store}>
       <Router>
-          <Home title={'Mos Eisley Archives'}/>
           <TopNav />
         <Switch>
-          <Route path="/books">
+          <Route path="/add-books">
             <BookForm />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/archive">
+            <DataTable />
           </Route>
         </Switch>
         <Switch>
           <Route path="/signin">
             <SignIn />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route exact path="/">
+            <Home title={'Mos Eisley Archives'}/>
           </Route>
         </Switch>
       </Router>
