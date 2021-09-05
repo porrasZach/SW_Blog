@@ -8,7 +8,7 @@ Flask==2.0.1
 # cross origin resource sharing: tells our browser that people can access
 #     this data from an unsecure endpoint
 Flask-Cors==3.0.10
-
+Flask-JWT-Extended==4.3.0
 Flask-Login==0.5.0
 
 # translates data from db (python class object display) into a dict data type 

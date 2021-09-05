@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { server_calls } from '../../api';
-import Grid, { GridSpacing } from '@material-ui/core/Grid';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { makeStyles } from '@material-ui/styles';
 import { DataGrid, GridColDef, GridRowModel } from '@material-ui/data-grid';
-import { Card, CardContent, Button, } from '@material-ui/core';
+import { Button, } from '@material-ui/core';
 import { useGetData } from '../../custom-hooks';
-import { Typography } from '@material-ui/core';
-import { BookForm } from '../BookForm';
 
 
-const book_id = "8bba937a-313c-4920-9b3b-ee2ef8f11528"
-const token = '7e1e9f538e15fcca7a6ac45743e071b71eaad17cfbd7478b'
+// const book_id = "8bba937a-313c-4920-9b3b-ee2ef8f11528"
+// const token = '7e1e9f538e15fcca7a6ac45743e071b71eaad17cfbd7478b'
 
 
 const useStyles = makeStyles({

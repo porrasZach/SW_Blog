@@ -1,11 +1,9 @@
-import React, { useState} from 'react';
+import { useState} from 'react';
 import { Drawer as MUIDrawer, 
     ListItem, 
     List, 
-    ListItemIcon, 
     ListItemText, 
     Theme,
-    useTheme,
     createTheme, 
     makeStyles, 
     createStyles,
@@ -18,10 +16,8 @@ import { Drawer as MUIDrawer,
     Button
 } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import MenuIcon from '@material-ui/icons/Menu'
 import saber_icon from '../../assets/Icons/light-saber.svg';
-import clsx from 'clsx';
-import { RouteComponentProps, withRouter, Switch, Route } from "react-router-dom";
+import { RouteComponentProps, withRouter} from "react-router-dom";
 
 
 
@@ -116,7 +112,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const SaberIcon = () =>{
   const classes = useStyles();
   return (
-    <img src={saber_icon} className={classes.sabers} />
+    <img src={saber_icon} className={classes.sabers} alt={'lightsaber icon'} />
   );
 }
 
@@ -136,7 +132,6 @@ export const TopNav = withRouter((props: TopNavProps) =>{
   console.log(props)
   const { history } = props;
   const classes = useStyles();
-  const theme = useTheme();
   const [open, setOpen] = useState(false);
   
   const handleNavOpen = () =>{
@@ -154,6 +149,16 @@ export const TopNav = withRouter((props: TopNavProps) =>{
     {
       text: 'Sign In',
       onClick: () => history.push('/signin')
+    },
+    {
+      text: 'Log Out',
+      onClick: () => {
+        sessionStorage.removeItem("token");
+        console.log("Logged Out")
+        history.push('/signin')
+        window.location.reload(); 
+        sessionStorage.setItem("token", '');
+      }
     },
     {
       text: 'Add Books',

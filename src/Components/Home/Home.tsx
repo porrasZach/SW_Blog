@@ -1,14 +1,5 @@
-import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-  } from "react-router-dom";
-import { sandTheme } from '../TopNav';
 
 interface Props{
     title: string;
@@ -42,7 +33,6 @@ const useStyles = makeStyles({
 
 export const Home = (props:Props) => {
     const classes = useStyles();
-    const theme = useTheme();
     return (
         <div className={classes.root}>
             <h1 className={classes.header}>mos eisley archives</h1>
