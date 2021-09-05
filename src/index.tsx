@@ -8,6 +8,7 @@ import { Home } from './Components/Home';
 import { TopNav } from './Components/TopNav';
 import { SignIn } from './Components';
 import { DataTable } from './Components';
+import { Blog } from './Components';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -31,6 +32,11 @@ ReactDOM.render(
         <Switch>
           <Route path="/signin">
             <SignIn />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/blog">
+            <Blog />
           </Route>
         </Switch>
         <Switch>
