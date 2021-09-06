@@ -7,7 +7,7 @@ import { BookForm } from './Components/BookForm';
 import { Home } from './Components/Home';
 import { TopNav } from './Components/TopNav';
 import { SignIn } from './Components';
-import { DataTable } from './Components';
+import { BookGrid } from './Components';
 import { Blog } from './Components';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
@@ -26,7 +26,7 @@ ReactDOM.render(
         </Switch>
         <Switch>
           <Route path="/archive">
-            <DataTable />
+          <BookGrid />
           </Route>
         </Switch>
         <Switch>
