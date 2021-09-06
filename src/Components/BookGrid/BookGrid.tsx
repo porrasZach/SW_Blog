@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { server_calls } from '../../api';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { makeStyles } from '@material-ui/styles';
-import { Grid, Card, CardContent, CardActions, Button, Paper } from '@material-ui/core';
+import { Grid, Card, CardContent, CardActions, Button, Paper, Typography } from '@material-ui/core';
 import { useGetData } from '../../custom-hooks';
 
 
@@ -31,10 +31,31 @@ const useStyles = makeStyles({
   paper: {
     height: 140,
     width: 120,
+    cursor: 'pointer',
     backgroundColor: 'rgb(232, 246, 239, .7)',
     '&:hover': {
       backgroundColor: 'rgb(184, 223, 216, .7)'
-
+    },
+  },
+  input:{
+    backgroundColor: 'rgb(255, 153, 0, .5)',
+    '&:hover': {
+      backgroundColor: 'rgb(255, 153, 0)'
+      },
+    border: '1px solid rgb(255, 153, 0, .5)',
+    borderRadius: '5px',
+    padding: '10px'
+},
+  delete: {
+    backgroundColor: 'rgb(224, 93, 93, .7)',
+    '&:hover': {
+      backgroundColor: 'rgb(224, 93, 93)'
+    }
+  },
+  view: {
+    backgroundColor: 'rgb(87, 204, 153, .7)',
+    '&:hover': {
+      backgroundColor: 'rgb(100, 204, 153)'
     }
   }
 })
@@ -42,41 +63,68 @@ const useStyles = makeStyles({
 export const BookGrid = () => {
   const classes = useStyles();
   const { bookData, getData } = useGetData();
-  const [ thisBook, selectBook ] = useState();
-  const [ bgColor, setColor ] = useState('rgb(232, 246, 239, .7)');
+  const [ thisBook, selectBook ] = useState(null);
+  // const [ bgColor, setColor ] = useState('rgb(232, 246, 239, .7)');
+  const [ filter, filterSet ] = useState('');
 
   let deleteData = () => {
-    console.log(bookData)
-    server_calls.delete(thisBook!).then(()=>getData())
+    console.log(bookData);
+    server_calls.delete(thisBook!).then(()=>getData());
   }
 
   let handleCardSelect = (id:any) =>{
     selectBook(id);
     console.log(id);
+    // setColor('rgb(224, 93, 93, .7)');
 }
+
+  let viewData = () => {
+    
+  }
   
-  const bookCards = bookData.map((book:any) =>
-    <Card onClick={() => handleCardSelect(book.id)} key={book.id} className={classes.paper}>
+  const bookCards = bookData
+  .filter((book:HTMLObjectElement) => book.title.toLowerCase().includes(filter.toLowerCase()))
+  .map((book:any) =>
+  <Card 
+    key={book.id} 
+    id={book.id}
+    onClick={() => handleCardSelect(book.id)} 
+    className={classes.paper}
+    >
       <CardContent>
-      {book.title}
-      <br /><br />
-      {book.author}
+        <Typography component="h2" variant="h5">
+        {book.title}
+        </Typography>
+        <br /><br />
+        {book.author}
       </CardContent>
-      <CardActions></CardActions>
-    </Card>
+  </Card>
   );
   
     return (
       <div className={classes.root}>
         <h2>Your Archives</h2>
-        <Button onClick={deleteData} size="small">Delete</Button>
+        <br />
+        <label>
+          Search<br />
+        <input
+          value={filter}
+          onChange={(evt) => filterSet(evt.target.value)}
+          className={classes.input}
+        ></input>
+        </label>
+        <br /><br />
+        <Button className={classes.delete} onClick={deleteData} size="small">Delete Selection</Button>
+        <br /><br />
+        <Button className={classes.view} onClick={viewData} size="small">View Details</Button>
+        <br /><br />
           <Grid 
             className={classes.container}
             container 
             direction="row" 
             justifyContent="space-around" 
-            alignItems="baseline" 
-            spacing={2}
+            alignItems="center" 
+            spacing={1}
           >
             {bookCards}
           </Grid>

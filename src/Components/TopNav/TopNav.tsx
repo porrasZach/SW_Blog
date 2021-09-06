@@ -97,6 +97,9 @@ const useStyles = makeStyles((theme: Theme) =>
     sabers: {
       height: '2rem'
     },
+    typo: {
+      fontFamily: 'Star Jedi'
+    },
     toolbar:{
       display: 'flex'
     },
@@ -190,19 +193,20 @@ export const TopNav = withRouter((props: TopNavProps) =>{
     <ThemeProvider theme={sandTheme}>
       <div className={classes.root}>
         <CssBaseline />
+        <ClickAwayListener onClickAway={handleNavClose}>
         <AppBar
         position="fixed">
         <Toolbar className={classes.toolbar}>
           <IconButton onClick={handleNavOpen}>
             <SaberIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography className={classes.typo} variant="h6" noWrap>
             Archive Index
           </Typography>
           <Button className={classes.toolbar_button}>The Outer Rim</Button>
         </Toolbar>
         </AppBar>
-        {/* <ClickAwayListener onClickAway={handleNavClose}> */}
+        </ClickAwayListener>
         <MUIDrawer
         className={classes.drawer}
         variant="persistent"
@@ -248,7 +252,6 @@ export const TopNav = withRouter((props: TopNavProps) =>{
         )}
         
         </MUIDrawer>
-        {/* </ClickAwayListener> */}
       </div>
     </ThemeProvider>
   )

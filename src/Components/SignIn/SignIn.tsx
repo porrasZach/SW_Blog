@@ -22,6 +22,9 @@ const useStyles = makeStyles(() =>
     form: {
         marginTop: '15rem',
         marginLeft: '15rem'
+    },
+    h2: {
+      fontFamily: 'Star Jedi'
     }
   }));
 
@@ -76,7 +79,7 @@ const useStyles = makeStyles(() =>
     return (
       <div className={classes.root}>
         <div className={classes.form}>
-          <h2>Login</h2>
+          <h2 className={classes.h2}>Login</h2>
           {token && token !== "" && token !== undefined ? ("You are logged in with a token") : (
             <form action="#">
             <div>
