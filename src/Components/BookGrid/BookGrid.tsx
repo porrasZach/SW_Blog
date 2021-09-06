@@ -2,12 +2,8 @@ import { useState } from 'react';
 import { server_calls } from '../../api';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { makeStyles } from '@material-ui/styles';
-import { Grid, Card, CardActions, Button, Paper } from '@material-ui/core';
+import { Grid, Card, CardContent, CardActions, Button, Paper } from '@material-ui/core';
 import { useGetData } from '../../custom-hooks';
-
-
-// const book_id = "8bba937a-313c-4920-9b3b-ee2ef8f11528"
-// const token = '7e1e9f538e15fcca7a6ac45743e071b71eaad17cfbd7478b'
 
 
 const useStyles = makeStyles({
@@ -45,25 +41,28 @@ const useStyles = makeStyles({
 
 export const BookGrid = () => {
   const classes = useStyles();
-  let { bookData, getData } = useGetData();
-  let [ thisBook, selectBook ] = useState();
+  const { bookData, getData } = useGetData();
+  const [ thisBook, selectBook ] = useState();
+  const [ bgColor, setColor ] = useState('rgb(232, 246, 239, .7)');
 
   let deleteData = () => {
     console.log(bookData)
-    server_calls.delete(thisBook!)
-    getData()
+    server_calls.delete(thisBook!).then(()=>getData())
   }
 
   let handleCardSelect = (id:any) =>{
     selectBook(id);
-    console.log(id)
+    console.log(id);
 }
   
   const bookCards = bookData.map((book:any) =>
     <Card onClick={() => handleCardSelect(book.id)} key={book.id} className={classes.paper}>
+      <CardContent>
       {book.title}
       <br /><br />
       {book.author}
+      </CardContent>
+      <CardActions></CardActions>
     </Card>
   );
   
