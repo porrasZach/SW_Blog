@@ -53,7 +53,7 @@ const useStyles = makeStyles({
 })
 
 
-export const DataTable =  () => {
+export const BookGrid =  () => {
   const classes = useStyles();
   let { bookData, getData } = useGetData();
 
