@@ -218,7 +218,7 @@ export const TopNav = withRouter((props: TopNavProps) =>{
             </IconButton>
           </div>
         <Divider />
-        {token && token != "" && token != undefined ? (
+        {token && token !== "" && token !== undefined ? (
           <List>
           {tokenList.map((item, index) => {
             const { text, onClick } = item;

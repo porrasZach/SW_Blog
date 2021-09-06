@@ -26,7 +26,7 @@ const useStyles = makeStyles(() =>
   }));
 
 
-export const SignIn = () =>{
+  export const SignIn = () =>{
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const token = sessionStorage.getItem("token");
@@ -51,14 +51,13 @@ export const SignIn = () =>{
       }).then(response => response.json())
         .then(data => {
           console.log("this came from the backend", data);
-          {data.msg && data.msg == "Bad username or password" ? (
+          {data.msg && data.msg === "Bad username or password" ? (
             window.alert("Invalid, please try again!")
           ) : (
             sessionStorage.setItem("token", data.access_token)
           )}
           
         })
-        window.location.reload();
       }
 
     const handleEmailChange = (
@@ -78,7 +77,7 @@ export const SignIn = () =>{
       <div className={classes.root}>
         <div className={classes.form}>
           <h2>Login</h2>
-          {token && token != "" && token != undefined ? ("You are logged in with a token") : (
+          {token && token !== "" && token !== undefined ? ("You are logged in with a token") : (
             <form action="#">
             <div>
               <input type="text" 
