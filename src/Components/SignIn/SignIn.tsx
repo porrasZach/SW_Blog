@@ -95,7 +95,7 @@ const useStyles = makeStyles(() =>
               />
             </div>
             <button onClick={onSubmitClick} type="submit">
-              Login Now
+              Login
             </button>
           </form>
           )}

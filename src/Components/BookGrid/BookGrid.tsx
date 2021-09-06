@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { server_calls } from '../../api';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { makeStyles } from '@material-ui/styles';
-import { Card, CardContent, Typography } from '@material-ui/core';
+import { Grid, Card, CardActions, Button, Paper } from '@material-ui/core';
 import { useGetData } from '../../custom-hooks';
 
 
@@ -21,63 +21,66 @@ const useStyles = makeStyles({
     backgroundPosition: 'center',
     position: 'absolute',
     zIndex: -1,
-    padding: '0',
+    padding: '3rem',
     paddingTop: '10rem',
     margin: '0',
+
+  },
+  container: {
+    flexGrow: 2,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around'
   },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    fontSize: 3,
-  },
-  pos: {
-    marginBottom: 2,
-  },
-  card: {
-    minWidth: 30,
-    width: '20rem',
-    backgroundColor: 'rgb(200, 198, 198, .7)',
-    height: '12rem',
-    marginTop: '10rem'
-  },
-  grid: {
-    width: '80%',
-    height: '80%'
-  },
+  paper: {
+    height: 140,
+    width: 120,
+    backgroundColor: 'rgb(232, 246, 239, .7)',
+    '&:hover': {
+      backgroundColor: 'rgb(184, 223, 216, .7)'
+
+    }
+  }
 })
 
-
-export const BookGrid =  () => {
+export const BookGrid = () => {
   const classes = useStyles();
   let { bookData, getData } = useGetData();
+  let [ thisBook, selectBook ] = useState();
 
+  let deleteData = () => {
+    console.log(bookData)
+    server_calls.delete(thisBook!)
+    getData()
+  }
+
+  let handleCardSelect = (id:any) =>{
+    selectBook(id);
+    console.log(id)
+}
+  
+  const bookCards = bookData.map((book:any) =>
+    <Card onClick={() => handleCardSelect(book.id)} key={book.id} className={classes.paper}>
+      {book.title}
+      <br /><br />
+      {book.author}
+    </Card>
+  );
+  
     return (
       <div className={classes.root}>
         <h2>Your Archives</h2>
-        {bookData.map((book: any) => {
-        return (
-          <Card className={classes.card} variant="outlined">
-            <CardContent>
-              <Typography variant="h5" component="h5">
-              {book.title}
-              </Typography>
-              <Typography className={classes.pos} color="textSecondary">
-              {book.author}
-              </Typography>
-              <Typography variant="body2" component="p">
-                {book.description}
-                <br />
-              </Typography>
-            </CardContent>
-          </Card>
-        )
-      })}
-      </div>
+        <Button onClick={deleteData} size="small">Delete</Button>
+          <Grid 
+            className={classes.container}
+            container 
+            direction="row" 
+            justifyContent="space-around" 
+            alignItems="baseline" 
+            spacing={2}
+          >
+            {bookCards}
+          </Grid>
+        </div>
       );
 }        
