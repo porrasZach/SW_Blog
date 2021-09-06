@@ -1,11 +1,9 @@
-import React, { useState} from 'react';
+import { useState} from 'react';
 import { Drawer as MUIDrawer, 
     ListItem, 
     List, 
-    ListItemIcon, 
     ListItemText, 
     Theme,
-    useTheme,
     createTheme, 
     makeStyles, 
     createStyles,
@@ -18,11 +16,9 @@ import { Drawer as MUIDrawer,
     Button
 } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import MenuIcon from '@material-ui/icons/Menu'
 import saber_icon from '../../assets/Icons/light-saber.svg';
-import clsx from 'clsx';
-import { RouteComponentProps, withRouter, Switch, Route } from "react-router-dom";
-
+import { RouteComponentProps, withRouter} from "react-router-dom";
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 
 
@@ -116,7 +112,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const SaberIcon = () =>{
   const classes = useStyles();
   return (
-    <img src={saber_icon} className={classes.sabers} />
+    <img src={saber_icon} className={classes.sabers} alt={'lightsaber icon'} />
   );
 }
 
@@ -136,9 +132,9 @@ export const TopNav = withRouter((props: TopNavProps) =>{
   console.log(props)
   const { history } = props;
   const classes = useStyles();
-  const theme = useTheme();
   const [open, setOpen] = useState(false);
-  
+  const token = sessionStorage.getItem("token");
+
   const handleNavOpen = () =>{
     setOpen(true);
   };
@@ -146,7 +142,7 @@ export const TopNav = withRouter((props: TopNavProps) =>{
     setOpen(false);
   };
 
-  const itemsList = [ 
+  const noTokenList = [
     {
       text: 'Home',
       onClick: () => history.push('/')
@@ -154,6 +150,27 @@ export const TopNav = withRouter((props: TopNavProps) =>{
     {
       text: 'Sign In',
       onClick: () => history.push('/signin')
+    },
+    {
+      text: 'Mos Eisley Blog',
+      onClick: () => history.push('/blog')
+    }
+  ]
+
+  const tokenList = [ 
+    {
+      text: 'Home',
+      onClick: () => history.push('/')
+    },
+    {
+      text: 'Log Out',
+      onClick: () => {
+        sessionStorage.removeItem("token");
+        sessionStorage.setItem("token", '');
+        history.push('/signin')
+        window.location.reload();
+        console.log("Logged Out")
+      }
     },
     {
       text: 'Add Books',
@@ -185,6 +202,7 @@ export const TopNav = withRouter((props: TopNavProps) =>{
           <Button className={classes.toolbar_button}>The Outer Rim</Button>
         </Toolbar>
         </AppBar>
+        {/* <ClickAwayListener onClickAway={handleNavClose}> */}
         <MUIDrawer
         className={classes.drawer}
         variant="persistent"
@@ -200,20 +218,37 @@ export const TopNav = withRouter((props: TopNavProps) =>{
             </IconButton>
           </div>
         <Divider />
-        <List>
-        {itemsList.map((item, index) => {
-          const { text, onClick } = item;
-          return (
-            <ListItem button key={text} onClick={() => {
-              handleNavClose();
-              onClick();
-            }}>
-              <ListItemText primary={text} />
-            </ListItem>
-          );
-        })}
-        </List>
+        {token && token !== "" && token !== undefined ? (
+          <List>
+          {tokenList.map((item, index) => {
+            const { text, onClick } = item;
+            return (
+              <ListItem button key={text} onClick={() => {
+                handleNavClose();
+                onClick();
+              }}>
+                <ListItemText primary={text} />
+              </ListItem>
+            );
+          })}
+          </List>)
+          : (<List>
+          {noTokenList.map((item, index) => {
+            const { text, onClick } = item;
+            return (
+              <ListItem button key={text} onClick={() => {
+                handleNavClose();
+                onClick();
+              }}>
+                <ListItemText primary={text} />
+              </ListItem>
+            );
+          })}
+          </List>
+        )}
+        
         </MUIDrawer>
+        {/* </ClickAwayListener> */}
       </div>
     </ThemeProvider>
   )

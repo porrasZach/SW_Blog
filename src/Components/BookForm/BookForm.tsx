@@ -1,10 +1,9 @@
-import { useDispatch, useSelector, useStore } from 'react-redux';
+import { useDispatch, useStore } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { chooseTitle, chooseAuthor, chooseReleaseYear, chooseDescription } from '../../redux/slices/rootSlice';
 import { Input, LongInput } from '../sharedComponents/Input';
-import { Button, Card, makeStyles, createStyles, } from '@material-ui/core';
+import { Button, makeStyles } from '@material-ui/core';
 import { server_calls } from '../../api';
-import { useGetData } from '../../custom-hooks';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 
 
@@ -44,12 +43,12 @@ interface BookFormProps {
     data?:{}
 }
 
-interface BookState {
-    title: string,
-    author: string,
-    release_year: string,
-    description: string
-}
+// interface BookState {
+//     title: string,
+//     author: string,
+//     release_year: string,
+//     description: string
+// }
 
 export const BookForm = (props:BookFormProps) => {
     const classes = useStyles();
@@ -58,14 +57,14 @@ export const BookForm = (props:BookFormProps) => {
     const dispatch = useDispatch();
 
     // gives access to returned object of data from useGetData custom hook
-    let { bookData, getData } = useGetData();
+    // let { bookData, getData } = useGetData();
 
     // returns store to us so we can send info to server/flask api calls
     //     after changes have been made to the store
     const store = useStore();
 
     // tester
-    const title = useSelector<BookState>(state => state.title)
+    // const title = useSelector<BookState>(state => state.title)
 
     // registers data & checks if data is of correct type
     const { register, handleSubmit } = useForm({});
