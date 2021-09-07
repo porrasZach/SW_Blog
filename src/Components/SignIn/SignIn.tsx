@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles, createStyles } from "@material-ui/core";
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
+import { useHistory } from "react-router";
 
 
 const useStyles = makeStyles(() =>
@@ -33,6 +34,7 @@ const useStyles = makeStyles(() =>
     const [password, setPassword] = useState('')
     const token = sessionStorage.getItem("token");
     const classes = useStyles();
+    const history = useHistory();
 
     const onSubmitClick = (
         event: React.MouseEvent<HTMLButtonElement>

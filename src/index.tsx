@@ -3,12 +3,7 @@ import ReactDOM from 'react-dom';
 import './styles.css';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import { BookForm } from './Components/BookForm';
-import { Home } from './Components/Home';
-import { TopNav } from './Components/TopNav';
-import { SignIn } from './Components';
-import { SignUp } from './Components';
-import { BookGrid } from './Components';
+import { Home, TopNav, BookForm, BookGrid, BookZoom, SignIn, SignUp } from './Components';
 import { Blog } from './Components';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
@@ -28,6 +23,11 @@ ReactDOM.render(
         <Switch>
           <Route path="/archive">
           <BookGrid />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/book-details">
+          <BookZoom />
           </Route>
         </Switch>
         <Switch>

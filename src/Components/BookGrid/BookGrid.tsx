@@ -1,9 +1,13 @@
 import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { chooseBookID, chooseDescription, chooseAuthor, chooseReleaseYear, chooseTitle } from '../../redux/slices/rootSlice';
 import { server_calls } from '../../api';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Card, CardContent, CardActions, Button, Paper, Typography } from '@material-ui/core';
 import { useGetData } from '../../custom-hooks';
+import { useHistory } from 'react-router';
+import { AnyObject } from '@reduxjs/toolkit/node_modules/immer/dist/internal';
 
 
 const useStyles = makeStyles({
@@ -66,24 +70,30 @@ const useStyles = makeStyles({
 
 export const BookGrid = () => {
   const classes = useStyles();
+  const history = useHistory();
   const { bookData, getData } = useGetData();
-  const [ thisBook, selectBook ] = useState(null);
+  const [ thisBook, selectBook ] = useState('');
   // const [ bgColor, setColor ] = useState('rgb(232, 246, 239, .7)');
   const [ filter, filterSet ] = useState('');
+  const dispatch = useAppDispatch();
 
   let deleteData = () => {
     console.log(bookData);
     server_calls.delete(thisBook!).then(()=>getData());
   }
 
-  let handleCardSelect = (id:any) =>{
-    selectBook(id);
-    console.log(id);
+  let handleCardSelect = (book:any) =>{
+    selectBook(book);
+    dispatch(chooseBookID(book.book_id))
+    dispatch(chooseAuthor(book.author))
+    dispatch(chooseDescription(book.description))
+    dispatch(chooseTitle(book.title))
+    console.log(book.title);
     // setColor('rgb(224, 93, 93, .7)');
 }
 
   let viewData = () => {
-    
+    history.push('/book-details');
   }
   
   const bookCards = bookData
@@ -92,7 +102,7 @@ export const BookGrid = () => {
   <Card 
     key={book.id} 
     id={book.id}
-    onClick={() => handleCardSelect(book.id)} 
+    onClick={() => handleCardSelect(book)} 
     className={classes.paper}
     >
       <CardContent>
