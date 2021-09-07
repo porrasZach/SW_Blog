@@ -7,12 +7,11 @@ import { BookForm } from './Components/BookForm';
 import { Home } from './Components/Home';
 import { TopNav } from './Components/TopNav';
 import { SignIn } from './Components';
+import { SignUp } from './Components';
 import { BookGrid } from './Components';
 import { Blog } from './Components';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-import { ThemeProvider } from '@material-ui/styles';
-import { theme } from './theme';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -32,8 +31,13 @@ ReactDOM.render(
           </Route>
         </Switch>
         <Switch>
-          <Route path="/signin">
+          <Route exact path="/signin">
             <SignIn />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route exact path="/signup">
+            <SignUp />
           </Route>
         </Switch>
         <Switch>

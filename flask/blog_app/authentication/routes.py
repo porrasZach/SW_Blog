@@ -27,23 +27,25 @@ def create_token():
     
 
 
-
+# still needs to be reconfigured for React front-end
 @auth.route('/signup', methods=['GET', 'POST'])
 def signup():
-    form = UserSignupForm()
-    if request.method == 'POST' and form.validate_on_submit():
-        user_name = form.user_name.data
-        email = form.email.data
-        password = form.password.data
+    user_name = request.json.get("user_name", None)
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+    email_taken = User.query.filter(User.email == email).first()
+    if email_taken:
+        return jsonify({"msg": "Email taken"})
+    else:
         print(user_name, email, password)
         new_user = User(user_name, email, password)
         db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for('auth.signin'))
-    return render_template('signup.html', form = form)
+        access_token = create_access_token(identity=email)
+        return jsonify(access_token=access_token)
 
 
-
+# not used by React front-end
 @auth.route('/logout')
 @login_required
 def logout():

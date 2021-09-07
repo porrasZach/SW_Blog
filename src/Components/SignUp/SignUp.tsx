@@ -28,9 +28,10 @@ const useStyles = makeStyles(() =>
   }));
 
 
-  export const SignIn = () =>{
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+  export const SignUp = () =>{
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [user_name, setUserName] = useState('');
     const token = sessionStorage.getItem("token");
     const classes = useStyles();
 
@@ -40,11 +41,12 @@ const useStyles = makeStyles(() =>
       event.preventDefault()
       console.log("You pressed login")
       let opts = {
+        'user_name': user_name,
         'email': email,
         'password': password
       };
 
-      fetch('/signin', {
+      fetch('/signup', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json"
@@ -53,14 +55,20 @@ const useStyles = makeStyles(() =>
       }).then(response => response.json())
         .then(data => {
           console.log("this came from the backend", data);
-          {data.msg && data.msg === "Bad username or password" ? (
-            window.alert("Invalid, please try again!")
+          {data.msg && data.msg === "Email taken" ? (
+            window.alert("That email is already used!")
           ) : (
             sessionStorage.setItem("token", data.access_token)
           )}
           
         })
       }
+
+    const handleNameChange = (
+        event: React.ChangeEvent<HTMLInputElement>
+        )=>{
+     setUserName(event.target.value)
+    }
 
     const handleEmailChange = (
         event: React.ChangeEvent<HTMLInputElement>
@@ -78,9 +86,16 @@ const useStyles = makeStyles(() =>
     return (
       <div className={classes.root}>
         <div className={classes.form}>
-          <h2 className={classes.h2}>Login</h2>
+          <h2 className={classes.h2}>Sign up</h2>
           {token && token !== "" && token !== undefined ? ("You have logged in!") : (
             <form action="#">
+            <div>
+              <input type="text" 
+                placeholder="name" 
+                onChange={handleNameChange}
+                value={user_name} 
+              />
+            </div>
             <div>
               <input type="text" 
                 placeholder="email" 
@@ -97,7 +112,7 @@ const useStyles = makeStyles(() =>
               />
             </div>
             <button onClick={onSubmitClick} type="submit">
-              Login
+              SignUp
             </button>
           </form>
           )}

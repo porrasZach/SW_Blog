@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     position: 'absolute',
     zIndex: -1,
     padding: '3rem',
-    paddingTop: '10rem',
+    paddingTop: '5rem',
     margin: '0',
 
   },
@@ -26,7 +26,8 @@ const useStyles = makeStyles({
     flexGrow: 2,
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    marginTop: '1rem'
   },
   paper: {
     height: 140,
@@ -108,19 +109,18 @@ export const BookGrid = () => {
       <div className={classes.root}>
         <h2 className={classes.jedi}>Your Archives</h2>
         <br />
-        <label>
-          Search<br />
-        <input
-          value={filter}
-          onChange={(evt) => filterSet(evt.target.value)}
-          className={classes.input}
-        ></input>
-        </label>
-        <br /><br />
-        <Button className={classes.delete} onClick={deleteData} size="small">Delete Selection</Button>
-        <br /><br />
-        <Button className={classes.view} onClick={viewData} size="small">View Details</Button>
-        <br /><br />
+        <div>
+          <label>
+            Search<br />
+          <input
+            value={filter}
+            onChange={(evt) => filterSet(evt.target.value)}
+            className={classes.input}
+          ></input>
+          </label>
+          <Button className={classes.delete} onClick={deleteData} size="small">Delete Selection</Button>
+          <Button className={classes.view} onClick={viewData} size="small">View Details</Button>
+        </div>
           <Grid 
             className={classes.container}
             container 
