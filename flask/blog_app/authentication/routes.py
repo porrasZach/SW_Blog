@@ -4,8 +4,6 @@ from blog_app.forms import UserSignupForm, UserLoginForm
 from blog_app.models import db, User, check_password_hash
 from flask_login import login_user, logout_user, login_required
 from flask_jwt_extended import create_access_token
-from flask_jwt_extended import get_jwt_identity
-from flask_jwt_extended import jwt_required
 
 auth = Blueprint('auth', __name__, template_folder='auth_templates')
 

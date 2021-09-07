@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { makeStyles, createStyles } from "@material-ui/core";
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { chooseUserToken } from "../../redux/slices/rootSlice";
 
 
 const useStyles = makeStyles(() =>
@@ -32,8 +34,9 @@ const useStyles = makeStyles(() =>
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [user_name, setUserName] = useState('');
-    const token = sessionStorage.getItem("token");
+    const token = useAppSelector((state) => state.user_token)
     const classes = useStyles();
+    const dispatch = useAppDispatch();
 
     const onSubmitClick = (
         event: React.MouseEvent<HTMLButtonElement>
@@ -58,7 +61,7 @@ const useStyles = makeStyles(() =>
           {data.msg && data.msg === "Email taken" ? (
             window.alert("That email is already used!")
           ) : (
-            sessionStorage.setItem("token", data.access_token)
+            dispatch(chooseUserToken(data.access_token))
           )}
           
         })
