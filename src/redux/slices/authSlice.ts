@@ -1,21 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit';
-
+import { createSlice } from "@reduxjs/toolkit";
 
 const authSlice = createSlice({
-    name: "root",
-    initialState: {
-
+    name: 'auth',
+    initialState:{
+        name: '',
+        email: '',
+        token: ''
     },
-    // takes in initial state of rootSlice, & data/form submission (action), 
-    //     and changes the state based on the specific data submitted (payload)
     reducers: {
-        
+        changeName: (state, action) => { state.name = action.payload },
+        changeEmail: (state, action) => { state.email = action.payload },
+        changeToken: (state, action) => { state.token = action.payload }
     }
 })
 
 
-
-export const reducer = authSlice.reducer;
+export const authReducer = authSlice.reducer;
 export const {
-
-    } = authSlice.actions;
+    changeName,
+    changeEmail,
+    changeToken
+} = authSlice.actions;

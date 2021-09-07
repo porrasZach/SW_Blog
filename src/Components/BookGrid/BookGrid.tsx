@@ -57,6 +57,9 @@ const useStyles = makeStyles({
     '&:hover': {
       backgroundColor: 'rgb(100, 204, 153)'
     }
+  },
+  jedi: {
+    fontFamily: 'Star Jedi'
   }
 })
 
@@ -103,7 +106,7 @@ export const BookGrid = () => {
   
     return (
       <div className={classes.root}>
-        <h2>Your Archives</h2>
+        <h2 className={classes.jedi}>Your Archives</h2>
         <br />
         <label>
           Search<br />

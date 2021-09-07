@@ -105,7 +105,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     toolbar_button: {
       marginLeft: 'auto',
-			color: 'white'
+			color: 'white',
+      fontFamily: 'Star Jedi',
+      textTransform: 'lowercase'
     }
   }),
 );
@@ -201,9 +203,9 @@ export const TopNav = withRouter((props: TopNavProps) =>{
             <SaberIcon />
           </IconButton>
           <Typography className={classes.typo} variant="h6" noWrap>
-            Archive Index
+            archive index
           </Typography>
-          <Button className={classes.toolbar_button}>The Outer Rim</Button>
+          <Button className={classes.toolbar_button}>the outer rim</Button>
         </Toolbar>
         </AppBar>
         </ClickAwayListener>

@@ -11,12 +11,14 @@ import { BookGrid } from './Components';
 import { Blog } from './Components';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import { ThemeProvider } from '@material-ui/styles';
+import { theme } from './theme';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store = {store}>
+    <Provider store={store}>
       <Router>
           <TopNav />
         <Switch>

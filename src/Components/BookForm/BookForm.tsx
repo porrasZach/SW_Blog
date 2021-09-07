@@ -25,9 +25,9 @@ const useStyles = makeStyles({
     form:{
         marginTop: '15rem',
         width: '20rem',
-        height: '25rem',
+        height: '30rem',
         marginLeft: '10rem',
-        backgroundColor: 'rgb(255, 153, 0, .2)',
+        backgroundColor: 'rgb(255, 153, 0, .5)',
         border: '1px solid rgb(255, 153, 0, .5)',
         borderRadius: '5px',
         padding: '10px'
@@ -35,6 +35,9 @@ const useStyles = makeStyles({
     input:{
         height: '8rem'
     },
+    jedi: {
+        fontFamily: 'Star Jedi'
+    }
 })
 
 
@@ -88,6 +91,7 @@ export const BookForm = (props:BookFormProps) => {
     return (
         <div className={classes.root}>
                 <form className={classes.form} onSubmit = {handleSubmit(onSubmit)}>
+                <h2 className={classes.jedi}>upload to Archives</h2>
                     <div>
                         {/* <label htmlFor="title">Book Title</label> */}
                         <Input {...register('title')} name="title" placeholder='book title...'/>
