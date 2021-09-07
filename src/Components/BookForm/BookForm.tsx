@@ -23,9 +23,9 @@ const useStyles = makeStyles({
         justifyContent: 'left'
     },
     form:{
-        marginTop: '15rem',
+        marginTop: '6rem',
         width: '20rem',
-        height: '30rem',
+        height: '27rem',
         marginLeft: '10rem',
         backgroundColor: 'rgb(255, 153, 0, .5)',
         border: '1px solid rgb(255, 153, 0, .5)',
@@ -91,18 +91,18 @@ export const BookForm = (props:BookFormProps) => {
     return (
         <div className={classes.root}>
                 <form className={classes.form} onSubmit = {handleSubmit(onSubmit)}>
-                <h2 className={classes.jedi}>upload to Archives</h2>
+                <h2 className={classes.jedi}>upload to Your Archives</h2>
                     <div>
                         {/* <label htmlFor="title">Book Title</label> */}
-                        <Input {...register('title')} name="title" placeholder='book title...'/>
+                        <Input {...register('title')} name="title" placeholder='book title'/>
                     </div>
                     <div>
                         {/* <label htmlFor="author">Author</label> */}
-                        <Input {...register('author')} name="author" placeholder="author..."/>
+                        <Input {...register('author')} name="author" placeholder="author"/>
                     </div>
                     <div>
                         {/* <label htmlFor="release_year">Release Year</label> */}
-                        <Input {...register('release_year')} name="release_year" placeholder="release year..." />
+                        <Input {...register('release_year')} name="release_year" placeholder="release year - [yyyy]" />
                     </div>
                     <div>
                         {/* <label htmlFor="description">Description</label> */}

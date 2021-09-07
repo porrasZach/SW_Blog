@@ -10,7 +10,6 @@ from flask_jwt_extended import jwt_required
 auth = Blueprint('auth', __name__, template_folder='auth_templates')
 
 
-# Create a route to authenticate your users and return JWTs. The
 # create_access_token() function is used to actually generate the JWT.
 @auth.route("/signin", methods=["POST"])
 def create_token():
@@ -25,9 +24,6 @@ def create_token():
         return jsonify({"msg": "Bad username or password"}), 401
 
     
-
-
-# still needs to be reconfigured for React front-end
 @auth.route('/signup', methods=['GET', 'POST'])
 def signup():
     user_name = request.json.get("user_name", None)
@@ -45,7 +41,7 @@ def signup():
         return jsonify(access_token=access_token)
 
 
-# not used by React front-end
+########## not used by React front-end ##########
 @auth.route('/logout')
 @login_required
 def logout():

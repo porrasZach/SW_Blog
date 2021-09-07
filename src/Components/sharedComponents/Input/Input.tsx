@@ -30,7 +30,7 @@ export const Input = forwardRef((props:inputType, ref) => {
         inputRef={ref}
         fullWidth
         type='text'
-        rows="6"
+        rows="3"
         multiline
         size='small'
         {...props}

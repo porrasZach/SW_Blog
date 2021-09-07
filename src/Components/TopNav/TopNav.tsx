@@ -153,7 +153,7 @@ export const TopNav = withRouter((props: TopNavProps) =>{
       onClick: () => history.push('/')
     },
     {
-      text: 'Sign In',
+      text: 'Login',
       onClick: () => history.push('/signin')
     },
     {

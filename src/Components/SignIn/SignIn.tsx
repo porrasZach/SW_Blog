@@ -20,7 +20,7 @@ const useStyles = makeStyles(() =>
       justifyContent: 'center'
   },
     form: {
-        margin: 'auto'
+        margin: '10rem auto'
     },
     h2: {
       fontFamily: 'Star Jedi'
@@ -79,6 +79,7 @@ const useStyles = makeStyles(() =>
       <div className={classes.root}>
         <div className={classes.form}>
           <h2 className={classes.h2}>Login</h2>
+          <br />
           {token && token !== "" && token !== undefined ? ("You have logged in!") : (
             <form action="#">
             <div>
@@ -88,6 +89,7 @@ const useStyles = makeStyles(() =>
                 value={email} 
               />
             </div>
+            <br />
             <div>
               <input
                 type="password"
@@ -96,6 +98,7 @@ const useStyles = makeStyles(() =>
                 value={password}
               />
             </div>
+            <br />
             <button onClick={onSubmitClick} type="submit">
               Login
             </button>
