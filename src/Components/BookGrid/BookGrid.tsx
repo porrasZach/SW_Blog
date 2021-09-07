@@ -88,6 +88,7 @@ export const BookGrid = () => {
     dispatch(chooseAuthor(book.author))
     dispatch(chooseDescription(book.description))
     dispatch(chooseTitle(book.title))
+    dispatch(chooseReleaseYear(book.release_year))
     console.log(book.title);
     // setColor('rgb(224, 93, 93, .7)');
 }
