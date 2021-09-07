@@ -1,12 +1,7 @@
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { useDispatch, useSelector, useStore } from 'react-redux';
-import { useState } from 'react';
-import { server_calls } from '../../api';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Card, CardContent, CardActions, Button, Paper, Typography } from '@material-ui/core';
-import { useGetData } from '../../custom-hooks';
-import { chooseBookID } from '../../redux/slices/rootSlice';
 import { useHistory } from 'react-router';
 
 

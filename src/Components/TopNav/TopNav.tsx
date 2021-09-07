@@ -19,7 +19,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import saber_icon from '../../assets/Icons/light-saber.svg';
 import { RouteComponentProps, withRouter} from "react-router-dom";
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-
+import { useAppSelector, useAppDispatch } from '../../redux/hooks';
+import { chooseUserToken } from '../../redux/slices/rootSlice';
 
 
 export const sandTheme = createTheme({
@@ -138,7 +139,8 @@ export const TopNav = withRouter((props: TopNavProps) =>{
   const { history } = props;
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const token = sessionStorage.getItem("token");
+  const token = useAppSelector((state) => state.user_token)
+  const dispatch = useAppDispatch();
 
   const handleNavOpen = () =>{
     setOpen(true);
@@ -174,8 +176,7 @@ export const TopNav = withRouter((props: TopNavProps) =>{
     {
       text: 'Log Out',
       onClick: () => {
-        sessionStorage.removeItem("token");
-        sessionStorage.setItem("token", '');
+        dispatch(chooseUserToken(''))
         history.push('/signin')
         window.location.reload();
         console.log("Logged Out")

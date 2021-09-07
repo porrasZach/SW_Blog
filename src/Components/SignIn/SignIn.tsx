@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { makeStyles, createStyles } from "@material-ui/core";
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
-import { useHistory } from "react-router";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { chooseUserToken } from "../../redux/slices/rootSlice";
+
 
 
 const useStyles = makeStyles(() =>
@@ -32,9 +34,9 @@ const useStyles = makeStyles(() =>
   export const SignIn = () =>{
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const token = sessionStorage.getItem("token");
+    const token = useAppSelector((state) => state.user_token)
     const classes = useStyles();
-    const history = useHistory();
+    const dispatch = useAppDispatch();
 
     const onSubmitClick = (
         event: React.MouseEvent<HTMLButtonElement>
@@ -58,7 +60,7 @@ const useStyles = makeStyles(() =>
           {data.msg && data.msg === "Bad username or password" ? (
             window.alert("Invalid, please try again!")
           ) : (
-            sessionStorage.setItem("token", data.access_token)
+            dispatch(chooseUserToken(data.access_token))
           )}
           
         })
