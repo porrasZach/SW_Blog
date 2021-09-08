@@ -1,13 +1,12 @@
 import { useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { useAppDispatch } from '../../redux/hooks';
 import { chooseBookID, chooseDescription, chooseAuthor, chooseReleaseYear, chooseTitle } from '../../redux/slices/rootSlice';
 import { server_calls } from '../../api';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { makeStyles } from '@material-ui/styles';
-import { Grid, Card, CardContent, CardActions, Button, Paper, Typography } from '@material-ui/core';
+import { Grid, Card, CardContent, Button, Typography } from '@material-ui/core';
 import { useGetData } from '../../custom-hooks';
 import { useHistory } from 'react-router';
-import { AnyObject } from '@reduxjs/toolkit/node_modules/immer/dist/internal';
 
 
 const useStyles = makeStyles({
@@ -24,7 +23,6 @@ const useStyles = makeStyles({
     padding: '3rem',
     paddingTop: '5rem',
     margin: '0',
-
   },
   container: {
     flexGrow: 2,
@@ -55,13 +53,21 @@ const useStyles = makeStyles({
     backgroundColor: 'rgb(224, 93, 93, .7)',
     '&:hover': {
       backgroundColor: 'rgb(224, 93, 93)'
-    }
+    },
+    margin: 'auto 1rem'
   },
   view: {
     backgroundColor: 'rgb(87, 204, 153, .7)',
     '&:hover': {
       backgroundColor: 'rgb(100, 204, 153)'
     }
+  },
+  add: {
+    backgroundColor: 'rgb(87, 204, 153, .7)',
+    '&:hover': {
+      backgroundColor: 'rgb(100, 204, 153)'
+    },
+    margin: 'auto 1rem'
   },
   jedi: {
     fontFamily: 'Star Jedi'
@@ -95,6 +101,10 @@ export const BookGrid = () => {
 
   let viewData = () => {
     history.push('/book-details');
+  }
+
+  let addBook = () => {
+    history.push('/add-books')
   }
   
   const bookCards = bookData
@@ -131,6 +141,8 @@ export const BookGrid = () => {
           </label>
           <Button className={classes.delete} onClick={deleteData} size="small">Delete Selection</Button>
           <Button className={classes.view} onClick={viewData} size="small">View Details</Button>
+          <Button className={classes.add} onClick={addBook} size="small">Add Entry</Button>
+
         </div>
           <Grid 
             className={classes.container}

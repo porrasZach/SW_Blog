@@ -1,7 +1,7 @@
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { useAppSelector } from '../../redux/hooks';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { makeStyles } from '@material-ui/styles';
-import { Grid, Card, CardContent, CardActions, Button, Paper, Typography } from '@material-ui/core';
+import { Card, CardContent, Button, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router';
 
 
@@ -17,7 +17,6 @@ const useStyles = makeStyles({
         zIndex: -1,
         padding: '0',
         margin: '0',
-        justifyContent: 'center'
     },
     paper: {
         height: 420,
@@ -25,7 +24,16 @@ const useStyles = makeStyles({
         marginTop: '11%',
         marginLeft: '50%',
         backgroundColor: 'rgb(232, 246, 239, .7)',
+        position: 'absolute'
       },
+    return: {
+        backgroundColor: 'rgb(87, 204, 153, .7)',
+        '&:hover': {
+            backgroundColor: 'rgb(100, 204, 153)'
+        },
+        marginLeft: '6rem',
+        marginTop: '10rem'
+    },
 })
 
 
@@ -48,7 +56,7 @@ export const BookZoom = () => {
                     </Typography>
                 </CardContent>
             </Card>
-            <Button onClick={goBack}>
+            <Button className={classes.return} onClick={goBack}>
                 Return
             </Button>
         </div>

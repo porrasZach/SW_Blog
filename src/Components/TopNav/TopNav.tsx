@@ -185,10 +185,6 @@ export const TopNav = withRouter((props: TopNavProps) =>{
       }
     },
     {
-      text: 'Add Books',
-      onClick: () => history.push('/add-books')
-    },
-    {
       text: 'Your Archive',
       onClick: () => history.push('/archive')
     },
