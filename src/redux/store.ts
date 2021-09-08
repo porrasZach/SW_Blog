@@ -1,19 +1,15 @@
-import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
-import { reducer } from './slices/rootSlice';
-import { authReducer } from './slices/authSlice';
+import { bookReducer } from './slices/bookSlice';
+import { rootReducer } from './slices/rootSlice';
 
-// const reducer = () => combineReducers({
-//     rootReducer,
-//     authReducer
-// });
 
 export const store = configureStore({
     reducer: {
-        
+        book: bookReducer,
+        root: rootReducer
     },
     devTools: true
 })
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

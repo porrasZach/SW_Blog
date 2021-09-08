@@ -29,11 +29,11 @@ const useStyles = makeStyles(() =>
     }
   }));
 
-
+  
   export const SignIn = () =>{
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const token = useAppSelector((state) => state.user_token)
+    const token = useAppSelector((state) => state.root.user_token)
     const classes = useStyles();
     const dispatch = useAppDispatch();
 

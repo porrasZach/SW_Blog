@@ -10,6 +10,7 @@ def token_required(function_below):
         token = None
 
         if 'access-token' in request.headers:
+            print(f'here are the headers: ${request.headers}')
             token = request.headers['access-token'].split(' ')[1]
         if not token:
             return jsonify({'message': 'Token is missing!'})

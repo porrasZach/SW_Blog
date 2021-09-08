@@ -40,7 +40,7 @@ const useStyles = makeStyles({
 export const BookZoom = () => {
     const classes = useStyles();
     const history = useHistory();
-    const book = useAppSelector((state) => state)
+    const book = useAppSelector((state) => state.book)
     const goBack = () => {
         history.push('/archive');
     }

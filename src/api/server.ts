@@ -1,11 +1,8 @@
 import { useAppSelector, useAppDispatch } from '../redux/hooks';
 
-// let token = '7e1e9f538e15fcca7a6ac45743e071b71eaad17cfbd7478b';
-
 
 export const server_calls = {
     getAll: async (token:string) => {
-        // let token = useAppSelector((state) => state.user_token)
         const response = await fetch(`/api/books`,{
             method: 'GET',
             headers: {

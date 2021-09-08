@@ -140,7 +140,7 @@ export const TopNav = withRouter((props: TopNavProps) =>{
   const { history } = props;
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const token = useAppSelector((state) => state.user_token)
+  const token = useAppSelector((state) => state.root.user_token)
   const dispatch = useAppDispatch();
   const location = useLocation();
 

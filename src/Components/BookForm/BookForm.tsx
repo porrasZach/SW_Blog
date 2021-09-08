@@ -1,6 +1,6 @@
 import { useDispatch, useStore } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { chooseTitle, chooseAuthor, chooseReleaseYear, chooseDescription } from '../../redux/slices/rootSlice';
+import { chooseTitle, chooseAuthor, chooseReleaseYear, chooseDescription } from '../../redux/slices/bookSlice';
 import { Input, LongInput } from '../sharedComponents/Input';
 import { Button, makeStyles } from '@material-ui/core';
 import { server_calls } from '../../api';
@@ -21,8 +21,6 @@ const useStyles = makeStyles({
         zIndex: -1,
         padding: '0',
         margin: '0',
-        display: 'flex',
-        justifyContent: 'left'
     },
     form:{
         marginTop: '6rem',
@@ -39,6 +37,15 @@ const useStyles = makeStyles({
     },
     jedi: {
         fontFamily: 'Star Jedi'
+    },
+    submit: {
+        display: 'inline',
+        marginLeft: '10rem',
+        marginTop: '2rem',
+        backgroundColor: 'rgb(87, 204, 153, .7)',
+    '&:hover': {
+      backgroundColor: 'rgb(100, 204, 153)'
+    },
     }
 })
 
@@ -52,21 +59,22 @@ interface BookFormProps {
 export const BookForm = (props:BookFormProps) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const store = useStore();
+    const new_book = useAppSelector((state) => state)
     const { register, handleSubmit } = useForm({});
     const history = useHistory();
-    const token = useAppSelector((state) => state.user_token)
+    const token = useAppSelector((state) => state.root.user_token)
 
     const onSubmit = (data:any, event:any) => {
-        console.log(props.id)
         dispatch(chooseTitle(data.title))
         dispatch(chooseAuthor(data.author))
         dispatch(chooseReleaseYear(data.release_year))
         dispatch(chooseDescription(data.description))
-        server_calls.create(token, )
-        console.log(store.getState())
-        history.push('/archive')
         }
+
+    const createBook = () => {
+        server_calls.create(token,new_book.book)
+        history.push('/archive')
+    }
 
     return (
         <div className={classes.root}>
@@ -84,8 +92,9 @@ export const BookForm = (props:BookFormProps) => {
                     <div>
                         <LongInput {...register('description')} name="description" placeholder="description - max 500 char"/>
                     </div>
-                    <Button type='submit'>Submit</Button>
+                    <Button type='submit'>Create</Button>
                 </form>
+                <Button className={classes.submit} onClick={createBook}>Submit</Button>
         </div>
     )
 }

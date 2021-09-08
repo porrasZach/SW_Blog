@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { chooseBookID, chooseDescription, chooseAuthor, chooseReleaseYear, chooseTitle } from '../../redux/slices/rootSlice';
+import { chooseBookID, chooseDescription, chooseAuthor, chooseReleaseYear, chooseTitle } from '../../redux/slices/bookSlice';
 import { server_calls } from '../../api';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { makeStyles } from '@material-ui/styles';
@@ -79,12 +79,9 @@ export const BookGrid = () => {
   const history = useHistory();
   const { bookData, getData } = useGetData();
   const [ thisBook, selectBook ] = useState('');
-  // const [ bgColor, setColor ] = useState('rgb(232, 246, 239, .7)');
   const [ filter, filterSet ] = useState('');
   const dispatch = useAppDispatch();
-  let token = useAppSelector((state) => state.user_token)
-
-  // const bookState = useAppSelector((state) => state)
+  let token = useAppSelector((state) => state.root.user_token)
   
 
   let deleteData = () => {
@@ -100,7 +97,6 @@ export const BookGrid = () => {
     dispatch(chooseTitle(book.title))
     dispatch(chooseReleaseYear(book.release_year))
     console.log(book.id);
-    // setColor('rgb(224, 93, 93, .7)');
 }
 
   let viewData = () => {
@@ -136,7 +132,7 @@ export const BookGrid = () => {
         <br />
         <div>
           <label>
-            Search<br />
+            Search Title<br />
           <input
             value={filter}
             onChange={(evt) => filterSet(evt.target.value)}
