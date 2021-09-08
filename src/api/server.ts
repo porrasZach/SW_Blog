@@ -2,8 +2,8 @@ import { useAppSelector, useAppDispatch } from '../redux/hooks';
 
 
 export const server_calls = {
-    getAll: async (token:string) => {
-        const response = await fetch(`/api/books`,{
+    getAll: async (token:string, db_table:string) => {
+        const response = await fetch(`/api/${db_table}`,{
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -17,8 +17,8 @@ export const server_calls = {
         return await response.json()
     },
 
-    getOne: async (token:string,id:string) => {
-        const response = await fetch(`/api/books/${id}`,{
+    getOne: async (token:string,id:string,db_table:string) => {
+        const response = await fetch(`/api/${db_table}/${id}`,{
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,8 +33,8 @@ export const server_calls = {
         return await response.json()
     },
 
-    create: async(token:string, data:any = {}) => {
-        const response = await fetch(`/api/books`,{
+    create: async(token:string, db_table:string, data:any = {}) => {
+        const response = await fetch(`/api/${db_table}`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,8 +49,8 @@ export const server_calls = {
 
         return await response.json()
     },
-    update: async (token:string,id:string, data:any = {}) => {
-        const response = await fetch(`/api/books/${id}`, {
+    update: async (token:string,db_table:string,id:string, data:any = {}) => {
+        const response = await fetch(`/api/${db_table}/${id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -62,8 +62,8 @@ export const server_calls = {
             throw new Error('Failed to edit data in the database!')
         }
     },
-    delete: async(token:string,id:string) => {
-        const response = await fetch(`/api/books/${id}`,{
+    delete: async(token:string,id:string,db_table:string) => {
+        const response = await fetch(`/api/${db_table}/${id}`,{
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

@@ -92,11 +92,13 @@ def delete_book(current_user_token, id):
 @api.route('/blog', methods = ['POST'])
 @token_required
 def create_blog_post(current_user_token):
+    print(request.json)
     post_title = request.json['post_title']
+    sub_title = request.json['sub_title']
     body = request.json['body']
-    user_id = current_user_token.id
+    user_token = current_user_token.token
 
-    blogPost = BlogPost(post_title, body, user_id=user_id)
+    blogPost = BlogPost(post_title, sub_title, body, user_token=user_token)
 
     db.session.add(blogPost)
     db.session.commit()
@@ -105,6 +107,9 @@ def create_blog_post(current_user_token):
     response = blog_post_schema.dump(blogPost)
     return jsonify(response)
 
+
+
+##### not yet routed to front-end #####
 
 @api.route('/blog/<id>', methods = ['GET'])
 @token_required

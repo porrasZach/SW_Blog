@@ -72,15 +72,17 @@ class Book(db.Model):
 class BlogPost(db.Model):
     id = db.Column(db.String, primary_key=True)
     post_title = db.Column(db.String(100), nullable=False)
+    sub_title = db.Column(db.String(200), nullable=True)
     body = db.Column(db.String(5000), nullable=False)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    user_id = db.Column(db.String, db.ForeignKey('user.id'), nullable=False)
+    user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable=False)
 
-    def __init__(self, post_title, body, user_id, id=''):
+    def __init__(self, post_title, sub_title, body, user_token):
         self.id = self.set_id()
         self.post_title = post_title
+        self.sub_title = sub_title
         self.body = body
-        self.user_id = user_id
+        self.user_token = user_token
     
     def set_id(self):
         return str(uuid.uuid4())
@@ -98,7 +100,7 @@ books_schema = BookSchema(many = True)
 
 class BlogPostSchema(ma.Schema):
     class Meta:
-        fields = ['id', 'post_title', 'book_reference', 'body', 'timestamp']
+        fields = ['id', 'post_title', 'sub_title', 'book_reference', 'body', 'timestamp']
 
 blog_post_schema = BlogPostSchema()
 blog_posts_schema = BlogPostSchema(many = True)

@@ -86,7 +86,7 @@ export const BookGrid = () => {
 
   let deleteData = () => {
     console.log(thisBook)
-    server_calls.delete(token,thisBook!).then(()=>getData());
+    server_calls.delete(token,'books',thisBook!).then(()=>getData());
   }
 
   let handleCardSelect = (book:any) =>{

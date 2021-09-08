@@ -7,6 +7,7 @@ import { server_calls } from '../../api';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { useHistory } from 'react-router';
 import { useAppSelector } from '../../redux/hooks';
+import { choosePostTitle, chooseSubtitle, chooseBody } from '../../redux/slices/blogSlice';
 
 
 const useStyles = makeStyles({
@@ -50,51 +51,47 @@ const useStyles = makeStyles({
 })
 
 
-interface BookFormProps {
+interface BlogFormProps {
     id?:string,
     data?:{}
 }
 
-
-export const BookForm = (props:BookFormProps) => {
+export const BlogForm = (props:BlogFormProps) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const new_book = useAppSelector((state) => state)
+    const new_blog_post = useAppSelector((state) => state)
     const { register, handleSubmit } = useForm({});
     const history = useHistory();
     const token = useAppSelector((state) => state.root.user_token)
 
     const onSubmit = (data:any, event:any) => {
-        dispatch(chooseTitle(data.title))
-        dispatch(chooseAuthor(data.author))
-        dispatch(chooseReleaseYear(data.release_year))
-        dispatch(chooseDescription(data.description))
+        dispatch(choosePostTitle(data.post_title))
+        dispatch(chooseSubtitle(data.sub_title))
+        dispatch(chooseBody(data.body))
+        console.log(data)
         }
 
-    const createBook = () => {
-        server_calls.create(token,'books',new_book.book)
-        history.push('/archive')
+    const createBlogPost = () => {
+        server_calls.create(token,'blog',new_blog_post.blog)
+        history.push('/blog')
     }
 
     return (
         <div className={classes.root}>
                 <form className={classes.form} onSubmit = {handleSubmit(onSubmit)}>
-                <h2 className={classes.jedi}>upload to Your Archives</h2>
+                <h2 className={classes.jedi}>Create a New Blog Post</h2>
                     <div>
-                        <Input {...register('title')} name="title" placeholder='book title'/>
+                        <Input {...register('post_title')} name="post_title" placeholder='post title'/>
                     </div>
                     <div>
-                        <Input {...register('author')} name="author" placeholder="author"/>
+                        <Input {...register('sub_title')} name="sub_title" placeholder="subtitle"/>
                     </div>
                     <div>
-                        <Input {...register('release_year')} name="release_year" placeholder="release year - [yyyy]" />
-                    </div>
-                    <div>
-                        <LongInput {...register('description')} name="description" placeholder="description - max 500 char"/>
+                        <Input {...register('body')} name="body" placeholder="" />
                     </div>
                     <Button type='submit'>Create</Button>
                 </form>
-                <Button className={classes.submit} onClick={createBook}>Submit</Button>
+                <Button className={classes.submit} onClick={createBlogPost}>Submit</Button>
         </div>
     )
 }

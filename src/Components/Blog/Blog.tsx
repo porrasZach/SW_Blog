@@ -59,7 +59,7 @@ export const Blog = () => {
     const token = useAppSelector((state) => state.root.user_token)
   
     const blogLink = () => {
-      history.push('/write-blog')
+      history.push('/blog-form')
     }
 
     const handleExpandClick = () => {

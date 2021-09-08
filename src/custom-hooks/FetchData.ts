@@ -10,7 +10,7 @@ export const useGetData = () => {
     // interior function to get data that we will later insert into State
     const handleDataFetch = async () => {
         console.log('data was fetched')
-        const result = await server_calls.getAll(token);
+        const result = await server_calls.getAll(token,'books');
         
         setData(result)
     };

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './styles.css';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import { Home, TopNav, BookForm, BookGrid, BookZoom, SignIn, SignUp } from './Components';
+import { Home, TopNav, BookForm, BlogForm, BookGrid, BookZoom, SignIn, SignUp } from './Components';
 import { Blog } from './Components';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
@@ -38,6 +38,11 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/signup">
             <SignUp />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route exact path="/blog-form">
+            <BlogForm />
           </Route>
         </Switch>
         <Switch>
