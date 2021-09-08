@@ -142,7 +142,6 @@ export const TopNav = withRouter((props: TopNavProps) =>{
   const [open, setOpen] = useState(false);
   const token = useAppSelector((state) => state.root.user_token)
   const dispatch = useAppDispatch();
-  const location = useLocation();
 
   const handleNavOpen = () =>{
     setOpen(true);
@@ -192,6 +191,11 @@ export const TopNav = withRouter((props: TopNavProps) =>{
       text: 'Mos Eisley Blog',
       onClick: () => history.push('/blog')
     }
+    // ,
+    // {
+    //   text: 'Contribute to Blog',
+    //   onClick: () => history.push('/write-blog')
+    // }
   ]
 
   return (

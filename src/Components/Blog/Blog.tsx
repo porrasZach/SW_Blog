@@ -1,16 +1,14 @@
 import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+import { Button,
+  Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, IconButton,
+  Typography } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
+import { useAppSelector } from '../../redux/hooks';
+import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -26,6 +24,9 @@ const useStyles = makeStyles((theme: Theme) =>
         zIndex: -1,
         padding: '0',
         margin: '0'
+    },
+    link: {
+      marginTop: '10rem',
     },
     root2: {
       maxWidth: 540,
@@ -53,14 +54,27 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const Blog = () => {
     const classes = useStyles();
+    const history = useHistory();
     const [expanded, setExpanded] = React.useState(false);
+    const token = useAppSelector((state) => state.root.user_token)
   
+    const blogLink = () => {
+      history.push('/write-blog')
+    }
+
     const handleExpandClick = () => {
       setExpanded(!expanded);
     };
 
   return (
     <div className={classes.root}>
+      {token && token !== "" && token !== undefined ? (
+        <Button onClick={blogLink} className={classes.link}>
+          Contribute to the Blog
+        </Button>
+          ):
+          (null)
+          }
         <Card className={classes.root2}>
             <CardHeader
                 title="This is a hardcoded blog post"
