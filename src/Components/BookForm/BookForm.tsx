@@ -6,6 +6,7 @@ import { Button, makeStyles } from '@material-ui/core';
 import { server_calls } from '../../api';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { useHistory } from 'react-router';
+import { useAppSelector } from '../../redux/hooks';
 
 
 const useStyles = makeStyles({
@@ -54,6 +55,7 @@ export const BookForm = (props:BookFormProps) => {
     const store = useStore();
     const { register, handleSubmit } = useForm({});
     const history = useHistory();
+    const token = useAppSelector((state) => state.user_token)
 
     const onSubmit = (data:any, event:any) => {
         console.log(props.id)
@@ -61,7 +63,8 @@ export const BookForm = (props:BookFormProps) => {
         dispatch(chooseAuthor(data.author))
         dispatch(chooseReleaseYear(data.release_year))
         dispatch(chooseDescription(data.description))
-        server_calls.create(store.getState())
+        server_calls.create(token, )
+        console.log(store.getState())
         history.push('/archive')
         }
 

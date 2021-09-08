@@ -7,9 +7,7 @@ from flask_login import LoginManager, UserMixin
 from flask_marshmallow import Marshmallow
 
 
-
 ma = Marshmallow()
-
 
 
 login_manager = LoginManager()
@@ -19,9 +17,7 @@ def load_user(user_id):
     return User.query.get(user_id)
 
 
-
 db = SQLAlchemy()
-
 
 
 class User(db.Model, UserMixin):
@@ -90,7 +86,6 @@ class BlogPost(db.Model):
         return str(uuid.uuid4())
 
 
-
 # looking at data fetched from db & serializes 
 #     to be read as dict data type when served up
 class BookSchema(ma.Schema):
@@ -99,7 +94,6 @@ class BookSchema(ma.Schema):
 
 book_schema = BookSchema()
 books_schema = BookSchema(many = True)
-
 
 
 class BlogPostSchema(ma.Schema):

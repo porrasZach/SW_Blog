@@ -16,7 +16,7 @@ def create_token():
     logged_user = User.query.filter(User.email == email).first()
     if logged_user and check_password_hash(logged_user.password, password):
         login_user(logged_user)
-        access_token = create_access_token(identity=email)
+        access_token = logged_user.token
         print(access_token)
         return jsonify(access_token=access_token)
     else:
@@ -37,7 +37,7 @@ def signup():
         new_user = User(user_name, email, password)
         db.session.add(new_user)
         db.session.commit()
-        access_token = create_access_token(identity=email)
+        access_token = new_user.token
         print(access_token)
         return jsonify(access_token=access_token)
 

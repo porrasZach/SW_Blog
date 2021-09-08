@@ -1,7 +1,11 @@
-let token = '7e1e9f538e15fcca7a6ac45743e071b71eaad17cfbd7478b';
+import { useAppSelector, useAppDispatch } from '../redux/hooks';
+
+// let token = '7e1e9f538e15fcca7a6ac45743e071b71eaad17cfbd7478b';
+
 
 export const server_calls = {
-    getAll: async () => {
+    getAll: async (token:string) => {
+        // let token = useAppSelector((state) => state.user_token)
         const response = await fetch(`/api/books`,{
             method: 'GET',
             headers: {
@@ -16,7 +20,7 @@ export const server_calls = {
         return await response.json()
     },
 
-    getOne: async (id:string) => {
+    getOne: async (token:string,id:string) => {
         const response = await fetch(`/api/books/${id}`,{
             method: 'GET',
             headers: {
@@ -32,7 +36,7 @@ export const server_calls = {
         return await response.json()
     },
 
-    create: async(data: any = {}) => {
+    create: async(token:string, data:any = {}) => {
         const response = await fetch(`/api/books`,{
             method: 'POST',
             headers: {
@@ -48,7 +52,7 @@ export const server_calls = {
 
         return await response.json()
     },
-    update: async (id:string, data:any = {}) => {
+    update: async (token:string,id:string, data:any = {}) => {
         const response = await fetch(`/api/books/${id}`, {
             method: 'POST',
             headers: {
@@ -61,7 +65,7 @@ export const server_calls = {
             throw new Error('Failed to edit data in the database!')
         }
     },
-    delete: async(id:string) => {
+    delete: async(token:string,id:string) => {
         const response = await fetch(`/api/books/${id}`,{
             method: 'DELETE',
             headers: {

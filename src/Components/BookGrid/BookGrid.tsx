@@ -82,11 +82,14 @@ export const BookGrid = () => {
   // const [ bgColor, setColor ] = useState('rgb(232, 246, 239, .7)');
   const [ filter, filterSet ] = useState('');
   const dispatch = useAppDispatch();
+  let token = useAppSelector((state) => state.user_token)
+
   // const bookState = useAppSelector((state) => state)
+  
 
   let deleteData = () => {
     console.log(thisBook)
-    server_calls.delete(thisBook!).then(()=>getData());
+    server_calls.delete(token,thisBook!).then(()=>getData());
   }
 
   let handleCardSelect = (book:any) =>{
@@ -141,7 +144,7 @@ export const BookGrid = () => {
           ></input>
           </label>
           <Button className={classes.delete} onClick={deleteData} size="small">Delete Selection</Button>
-          <Button className={classes.view} onClick={viewData} size="small">View Details</Button>
+          <Button className={classes.view} onClick={viewData} size="small">View Selection</Button>
           <Button className={classes.add} onClick={addBook} size="small">Add Entry</Button>
 
         </div>
