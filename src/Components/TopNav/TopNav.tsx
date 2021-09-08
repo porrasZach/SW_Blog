@@ -21,6 +21,7 @@ import { RouteComponentProps, withRouter} from "react-router-dom";
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import { chooseUserToken } from '../../redux/slices/rootSlice';
+import { useLocation } from 'react-router';
 
 
 export const sandTheme = createTheme({
@@ -141,6 +142,7 @@ export const TopNav = withRouter((props: TopNavProps) =>{
   const [open, setOpen] = useState(false);
   const token = useAppSelector((state) => state.user_token)
   const dispatch = useAppDispatch();
+  const location = useLocation();
 
   const handleNavOpen = () =>{
     setOpen(true);

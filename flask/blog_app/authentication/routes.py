@@ -17,10 +17,12 @@ def create_token():
     if logged_user and check_password_hash(logged_user.password, password):
         login_user(logged_user)
         access_token = create_access_token(identity=email)
+        print(access_token)
         return jsonify(access_token=access_token)
     else:
         return jsonify({"msg": "Bad username or password"}), 401
 
+### need to return the token from User DB instead of creating a JWT?
     
 @auth.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -36,6 +38,7 @@ def signup():
         db.session.add(new_user)
         db.session.commit()
         access_token = create_access_token(identity=email)
+        print(access_token)
         return jsonify(access_token=access_token)
 
 

@@ -91,7 +91,7 @@ const useStyles = makeStyles(() =>
         <div className={classes.form}>
           <h2 className={classes.h2}>Sign up</h2>
           <br />
-          {token && token !== "" && token !== undefined ? ("You have logged in!") : (
+          {token && token !== "" && token !== undefined ? ("You have signed up!") : (
             <form action="#">
             <div>
               <input type="text" 
