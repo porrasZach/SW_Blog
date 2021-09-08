@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { chooseBookID, chooseDescription, chooseAuthor, chooseReleaseYear, chooseTitle } from '../../redux/slices/rootSlice';
 import { server_calls } from '../../api';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
@@ -82,20 +82,21 @@ export const BookGrid = () => {
   // const [ bgColor, setColor ] = useState('rgb(232, 246, 239, .7)');
   const [ filter, filterSet ] = useState('');
   const dispatch = useAppDispatch();
+  // const bookState = useAppSelector((state) => state)
 
   let deleteData = () => {
-    console.log(bookData);
+    console.log(thisBook)
     server_calls.delete(thisBook!).then(()=>getData());
   }
 
   let handleCardSelect = (book:any) =>{
-    selectBook(book);
-    dispatch(chooseBookID(book.book_id))
+    selectBook(book.id);
+    dispatch(chooseBookID(book.id))
     dispatch(chooseAuthor(book.author))
     dispatch(chooseDescription(book.description))
     dispatch(chooseTitle(book.title))
     dispatch(chooseReleaseYear(book.release_year))
-    console.log(book.title);
+    console.log(book.id);
     // setColor('rgb(224, 93, 93, .7)');
 }
 
