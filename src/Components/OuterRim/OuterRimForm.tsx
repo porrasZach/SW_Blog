@@ -34,9 +34,11 @@ const useStyles = makeStyles({
     jedi: {
         fontFamily: 'Star Jedi'
     },
+    buttons: {
+        display: 'flex',
+        justifyContent: 'center'
+    },
     submit: {
-        display: 'inline',
-        marginLeft: '10rem',
         marginTop: '2rem',
         backgroundColor: 'rgb(87, 204, 153, .7)',
     '&:hover': {
@@ -64,7 +66,7 @@ export const OuterRimForm = () => {
     return (
         <div className={classes.root}>
                 <h2 className={classes.jedi}>Roll Watto's dice</h2>
-                    <div>
+                    <div className={classes.buttons}>
                         <Button className={classes.submit} onClick={onDiceRoll} >Roll</Button>
                         <Button className={classes.submit} onClick={routeOuterRim} >See Result</Button>
                     </div>         
