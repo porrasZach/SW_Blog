@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/styles';
 import { Grid, Card, CardContent, Button, Typography } from '@material-ui/core';
 import { useGetData } from '../../custom-hooks';
 import { useHistory } from 'react-router';
+import book from '../../assets/Images/book.png';
 
 
 const useStyles = makeStyles({
@@ -35,10 +36,13 @@ const useStyles = makeStyles({
     height: 140,
     width: 120,
     cursor: 'pointer',
+    color: 'lightgrey',
     backgroundColor: 'rgb(232, 246, 239, .7)',
     '&:hover': {
       backgroundColor: 'rgb(184, 223, 216, .7)'
     },
+    borderRadius: '20px 2px 10px 2px',
+    backgroundImage: `url(${book})`
   },
   input:{
     backgroundColor: 'rgb(255, 153, 0, .5)',
@@ -71,6 +75,10 @@ const useStyles = makeStyles({
   },
   jedi: {
     fontFamily: 'Star Jedi'
+  },
+  book_title: {
+    fontSize: '20px',
+    marginTop: '9px'
   }
 })
 
@@ -117,10 +125,10 @@ export const BookGrid = () => {
     className={classes.paper}
     >
       <CardContent>
-        <Typography component="h2" variant="h5">
+        <Typography className={classes.book_title} component="h5" variant="h5">
         {book.title}
         </Typography>
-        <br /><br />
+        <br />
         {book.author}
       </CardContent>
   </Card>
