@@ -41,7 +41,7 @@ const useStyles = makeStyles({
     submit: {
         display: 'inline',
         marginLeft: '10rem',
-        marginTop: '2rem',
+        marginTop: '1rem',
         backgroundColor: 'rgb(87, 204, 153, .7)',
     '&:hover': {
       backgroundColor: 'rgb(100, 204, 153)'
@@ -92,9 +92,9 @@ export const BookForm = (props:BookFormProps) => {
                     <div>
                         <LongInput {...register('description')} name="description" placeholder="description - max 500 char"/>
                     </div>
-                    <Button type='submit'>Create</Button>
+                    <Button type='submit'>Load</Button>
                 </form>
-                <Button className={classes.submit} onClick={createBook}>Submit</Button>
+                <Button className={classes.submit} onClick={createBook}>Post</Button>
         </div>
     )
 }

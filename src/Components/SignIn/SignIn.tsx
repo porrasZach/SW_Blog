@@ -3,6 +3,7 @@ import { makeStyles, createStyles } from "@material-ui/core";
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { chooseUserToken } from "../../redux/slices/rootSlice";
+import { useHistory } from "react-router";
 
 
 const useStyles = makeStyles(() =>
@@ -36,6 +37,7 @@ const useStyles = makeStyles(() =>
     const token = useAppSelector((state) => state.root.user_token)
     const classes = useStyles();
     const dispatch = useAppDispatch();
+    const history = useHistory();
 
     const onSubmitClick = (
         event: React.MouseEvent<HTMLButtonElement>
@@ -61,8 +63,9 @@ const useStyles = makeStyles(() =>
           ) : (
             dispatch(chooseUserToken(data.access_token))
           )}
-          
         })
+        history.push('/')
+        window.alert("You are logged in!")
       }
 
     const handleEmailChange = (

@@ -162,10 +162,6 @@ export const TopNav = withRouter((props: TopNavProps) =>{
     {
       text: 'Sign Up',
       onClick: () => history.push('/signup')
-    },
-    {
-      text: 'Mos Eisley Blog',
-      onClick: () => history.push('/blog')
     }
   ]
 

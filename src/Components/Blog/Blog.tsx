@@ -9,8 +9,6 @@ import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { useAppSelector } from '../../redux/hooks';
 import { useHistory } from 'react-router';
 import { useFetchBlogs } from '../../custom-hooks/FetchBlogs';
-import { Link } from 'react-router-dom';
-import { server_calls } from '../../api';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -28,11 +26,12 @@ const useStyles = makeStyles((theme: Theme) =>
         margin: '0'
     },
     link: {
-      marginTop: '10rem',
+      margin: '7rem auto 0 5rem',
+      display: 'inline'
     },
     root2: {
-      maxWidth: 540,
-      margin: '5rem 20% auto auto'
+      maxWidth: 340,
+      margin: '5rem 20% auto auto',
     },
     expand: {
       transform: 'rotate(0deg)',
@@ -79,9 +78,7 @@ export const Blog = () => {
     const blogList = blogData.slice(-3).map((blogPost:any) =>
     <Card className={classes.root2}>
             <CardHeader
-
                 title= {blogPost.post_title}
-            
                 subheader= {blogPost.timestamp}
             />
                 <h6>Posted by GALAXY_ANONYMOUS</h6>

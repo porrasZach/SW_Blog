@@ -35,7 +35,7 @@ export const Home = (props:Props) => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <h1 className={classes.header}># mos eisley archives $<br/> and cantina blog</h1>
+            <h1 className={classes.header}>mos eisley archives<br/> <span style={{fontFamily: 'impact'}}>&</span> cantina blog</h1>
         </div>
     )
 }

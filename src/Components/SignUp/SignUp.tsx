@@ -25,7 +25,8 @@ const useStyles = makeStyles(() =>
         margin: '10rem auto'
     },
     h2: {
-      fontFamily: 'Star Jedi'
+      fontFamily: 'Star Jedi',
+      textAlign: 'center'
     }
   }));
 
