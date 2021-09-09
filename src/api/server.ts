@@ -1,4 +1,4 @@
-import { useAppSelector, useAppDispatch } from '../redux/hooks';
+
 
 
 export const server_calls = {
@@ -73,5 +73,14 @@ export const server_calls = {
         if (!response.ok){
             throw new Error('Failed to delete data from the database!')
         }
+    },
+    outerRim: async(id:string) => {
+        const response = await fetch(`https://www.swapi.tech/api/people/${id}`)
+        .then(res => res.json())
+        .then(res => {
+            return res;
+        })
+        console.log(response)
+        return response
     }
 }

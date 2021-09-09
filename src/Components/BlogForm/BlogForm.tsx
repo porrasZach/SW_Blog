@@ -68,6 +68,7 @@ export const BlogForm = (props:BlogFormProps) => {
         dispatch(choosePostTitle(data.post_title))
         dispatch(chooseSubtitle(data.sub_title))
         dispatch(chooseBody(data.body))
+        console.log(data.post_title)
         }
 
     const createBlogPost = () => {

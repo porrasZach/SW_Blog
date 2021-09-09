@@ -2,7 +2,6 @@ from flask import Blueprint, jsonify, request, url_for
 from blog_app.helpers import token_required
 from blog_app.models import Book, BlogPost, User, book_schema, books_schema, user_schema, db, blog_post_schema, blog_posts_schema
 
-
 api = Blueprint('api', __name__, url_prefix='/api')
 
 
@@ -124,6 +123,20 @@ def get_user_token(current_user_token, provided_token):
     got_token = User.query.filter_by(token = provided_token)
     response = user_schema.dump(got_token)
     return jsonify(response)
+
+
+
+
+###########################################
+######### SWAPI OUTER RIM ROUTE ###########
+
+
+# @api.route('/outer-rim/<id>', methods = ['GET'])
+# @token_required
+# def outer_rim(current_user_token, id):
+#     print(f'this is the id: {id}')
+#     response = request.get(f'https://www.swapi.tech/api/{id}')
+#     return jsonify(response)
 
 
 ##### not yet routed to front-end #####

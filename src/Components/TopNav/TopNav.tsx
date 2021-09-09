@@ -150,6 +150,14 @@ export const TopNav = withRouter((props: TopNavProps) =>{
     setOpen(false);
   };
 
+  const routeOuterRim = () => {
+    history.push('outer-rim')
+  };
+
+  const routeSignIn = () => {
+    history.push('signin')
+  };
+
   const noTokenList = [
     {
       text: 'Home',
@@ -208,7 +216,12 @@ export const TopNav = withRouter((props: TopNavProps) =>{
           <Typography className={classes.typo} variant="h6" noWrap>
             archive index
           </Typography>
-          <Button className={classes.toolbar_button}>the outer rim</Button>
+          {token && token !== "" && token !== undefined ? 
+          (
+          <Button onClick={routeOuterRim} className={classes.toolbar_button}>the outer rim</Button>
+          ) : (
+            null
+          )}
         </Toolbar>
         </AppBar>
         </ClickAwayListener>

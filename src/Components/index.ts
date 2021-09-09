@@ -7,3 +7,4 @@ export * from './SignIn';
 export * from './SignUp';
 export * from './Blog';
 export * from './sharedComponents/Input'
+export * from './OuterRim';
