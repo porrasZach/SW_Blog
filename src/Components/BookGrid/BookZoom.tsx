@@ -3,6 +3,7 @@ import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Button, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router';
+import notebook from '../../assets/Images/notebook.png';
 
 
 const useStyles = makeStyles({
@@ -12,7 +13,6 @@ const useStyles = makeStyles({
         height: '100%',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
         position: 'absolute',
         zIndex: -1,
         padding: '0',
@@ -23,9 +23,19 @@ const useStyles = makeStyles({
         width: 360,
         marginTop: '11%',
         marginLeft: '50%',
-        backgroundColor: 'rgb(232, 246, 239, .7)',
-        position: 'absolute'
+        backgroundImage: `url(${notebook})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: '45% 40%',
+        position: 'absolute',
+        borderRadius: '2px 2px 2px 2px',
       },
+    paper_top: {
+        paddingLeft: '45px'
+    },
+    paper_body: {
+      width: '20rem',
+      marginLeft: '2.5rem'  
+    },
     return: {
         backgroundColor: 'rgb(87, 204, 153, .7)',
         '&:hover': {
@@ -47,13 +57,18 @@ export const BookZoom = () => {
     return(
         <div className={classes.root}>
             <Card className={classes.paper}>
-                <CardContent>
+                <CardContent className={classes.paper_top}>
                     <Typography component="h2" variant="h5">
                         {book.title}
                     </Typography>
                     <Typography>
                         {book.author}
                     </Typography>
+                </CardContent>
+                    <Typography className={classes.paper_body} component="p" variant="body1">
+                        {book.description}
+                    </Typography>
+                <CardContent>
                 </CardContent>
             </Card>
             <Button className={classes.return} onClick={goBack}>

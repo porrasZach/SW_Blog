@@ -32,7 +32,7 @@ const useStyles = makeStyles({
     justifyContent: 'space-around',
     marginTop: '1rem'
   },
-  paper: {
+  book: {
     height: 140,
     width: 120,
     cursor: 'pointer',
@@ -41,7 +41,7 @@ const useStyles = makeStyles({
     '&:hover': {
       backgroundColor: 'rgb(184, 223, 216, .7)'
     },
-    borderRadius: '20px 2px 10px 2px',
+    borderRadius: '22px 3px 17px 2px',
     backgroundImage: `url(${book})`
   },
   input:{
@@ -122,7 +122,7 @@ export const BookGrid = () => {
     key={book.id} 
     id={book.id}
     onClick={() => handleCardSelect(book)} 
-    className={classes.paper}
+    className={classes.book}
     >
       <CardContent>
         <Typography className={classes.book_title} component="h5" variant="h5">
