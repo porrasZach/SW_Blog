@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, url_for
 from blog_app.helpers import token_required
-from blog_app.models import Book, BlogPost, book_schema, books_schema, db, blog_post_schema, blog_posts_schema
+from blog_app.models import Book, BlogPost, User, book_schema, books_schema, user_schema, db, blog_post_schema, blog_posts_schema
 
 
 api = Blueprint('api', __name__, url_prefix='/api')
@@ -108,8 +108,28 @@ def create_blog_post(current_user_token):
     return jsonify(response)
 
 
+@api.route('/blog', methods = ['GET'])
+@token_required
+def get_all_blog_posts(current_user_token):
+    blog_posts = BlogPost.query.all()
+    response = blog_posts_schema.dump(blog_posts)
+    print(response)
+    return jsonify(response)
+
+
+
+@api.route('/user-query/<provided_token>', methods = ['GET'])
+@token_required
+def get_user_token(current_user_token, provided_token):
+    got_token = User.query.filter_by(token = provided_token)
+    response = user_schema.dump(got_token)
+    return jsonify(response)
+
 
 ##### not yet routed to front-end #####
+
+
+
 
 @api.route('/blog/<id>', methods = ['GET'])
 @token_required
@@ -120,15 +140,6 @@ def get_one_blog_post(current_user_token, id):
         return jsonify(response)
     else:
         return jsonify({'message':"Can't find that blog post!"})
-
-
-@api.route('/blog', methods = ['GET'])
-@token_required
-def get_all_blog_posts(current_user_token):
-    author = current_user_token.id
-    blog_posts = BlogPost.query.filter_by(user_id = author).all()
-    response = blog_posts_schema.dump(blog_posts)
-    return jsonify(response)
 
 
 @api.route('/blog/<id>', methods = ['DELETE'])

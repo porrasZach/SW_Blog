@@ -100,7 +100,14 @@ books_schema = BookSchema(many = True)
 
 class BlogPostSchema(ma.Schema):
     class Meta:
-        fields = ['id', 'post_title', 'sub_title', 'book_reference', 'body', 'timestamp']
+        fields = ['id', 'post_title', 'sub_title', 'book_reference', 'body', 'timestamp', 'user_token']
 
 blog_post_schema = BlogPostSchema()
 blog_posts_schema = BlogPostSchema(many = True)
+
+
+class UserSchema(ma.Schema):
+    class Meta:
+        fields = ['user_name', 'token']
+
+user_schema = UserSchema()

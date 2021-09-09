@@ -8,7 +8,9 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { useAppSelector } from '../../redux/hooks';
 import { useHistory } from 'react-router';
+import { useFetchBlogs } from '../../custom-hooks/FetchBlogs';
 import { Link } from 'react-router-dom';
+import { server_calls } from '../../api';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -57,6 +59,13 @@ export const Blog = () => {
     const history = useHistory();
     const [expanded, setExpanded] = React.useState(false);
     const token = useAppSelector((state) => state.root.user_token)
+    const { blogData, getData } = useFetchBlogs();
+    
+    // const temp_token = 'a07dce55cd3e0ea184fc5f3416d100e2da4b30cf3682e630'
+
+    // console.log(blogData)
+    // const user_name = server_calls.getOne(token,'user',temp_token)
+    // console.log(user_name)
   
     const blogLink = () => {
       history.push('/blog-form')
@@ -66,21 +75,18 @@ export const Blog = () => {
       setExpanded(!expanded);
     };
 
-  return (
-    <div className={classes.root}>
-      {token && token !== "" && token !== undefined ? (
-        <Button onClick={blogLink} className={classes.link}>
-          Contribute to the Blog
-        </Button>
-          ):
-          (null)
-          }
-        <Card className={classes.root2}>
+
+    const blogList = blogData.slice(-3).map((blogPost:any) =>
+    <Card className={classes.root2}>
             <CardHeader
-                title="This is a hardcoded blog post"
-                subheader="September 7, 2021"
+
+                title= {blogPost.post_title}
+            
+                subheader= {blogPost.timestamp}
             />
-            <h6 className={classes.h6}>Posted by Darth Maul</h6>
+                <h6>Posted by GALAXY_ANONYMOUS</h6>
+            {/* <h6 className={classes.h6}>Posted by {user_name} </h6> */}
+
             <CardActions className={classes.inline_edit}>
                 <IconButton
                 className={clsx(classes.expand, {
@@ -95,23 +101,37 @@ export const Blog = () => {
             </CardActions>
             <CardContent className={classes.inline_edit}>
                 <Typography className={classes.inline_edit} variant="body2" color="textSecondary" component="p">
-                <em>This recent chapter of Kingsley Wars was really intense. Spoiler alert!</em>
+                
+                  <em>{blogPost.sub_title}</em>
+
                 </Typography>
             </CardContent>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                     <Typography paragraph>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                        Quasi natus dolorum minus nihil officiis veniam?
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi ullam consequatur 
-                        exercitationem maiores corrupti mollitia labore assumenda unde ipsum, perferendis 
-                        possimus, ea adipisci, provident quam quidem autem? Delectus odit atque dolorum 
-                        adipisci excepturi ipsum laborum modi eum nam animi maxime quis doloribus tempore 
-                        praesentium, ex totam provident voluptates distinctio non!
+                        
+                      {blogPost.body}
+
                     </Typography>
                 </CardContent>
             </Collapse>
         </Card>
+    )
+
+
+
+  return (
+    <div className={classes.root}>
+      {token && token !== "" && token !== undefined ? (
+        <Button onClick={blogLink} className={classes.link}>
+          Contribute to the Blog
+        </Button>
+          ):
+          (null)
+          }
+          
+          {blogList}
+
     </div>
   );
 }

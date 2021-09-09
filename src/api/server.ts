@@ -17,7 +17,7 @@ export const server_calls = {
         return await response.json()
     },
 
-    getOne: async (token:string,id:string,db_table:string) => {
+    getOne: async (token:string,db_table:string,id:string) => {
         const response = await fetch(`/api/${db_table}/${id}`,{
             method: 'GET',
             headers: {
@@ -62,7 +62,7 @@ export const server_calls = {
             throw new Error('Failed to edit data in the database!')
         }
     },
-    delete: async(token:string,id:string,db_table:string) => {
+    delete: async(token:string,db_table:string,id:string) => {
         const response = await fetch(`/api/${db_table}/${id}`,{
             method: 'DELETE',
             headers: {

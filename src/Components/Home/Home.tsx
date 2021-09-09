@@ -6,7 +6,6 @@ interface Props{
 }
 
 
-
 const useStyles = makeStyles({
     root:{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)), url(${desert_hills});`,
@@ -25,7 +24,8 @@ const useStyles = makeStyles({
     header:{
         fontFamily: 'Star Jedi',
         marginTop: '8rem',
-        fontSize: '3rem'
+        fontSize: '3rem',
+        textAlign: 'center'
     }
 })
 
@@ -35,7 +35,7 @@ export const Home = (props:Props) => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <h1 className={classes.header}>mos eisley archives</h1>
+            <h1 className={classes.header}># mos eisley archives $<br/> and cantina blog</h1>
         </div>
     )
 }
