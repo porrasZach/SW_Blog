@@ -107,7 +107,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     toolbar_button: {
       marginLeft: 'auto',
-			color: 'white',
+			color: 'black',
       fontFamily: 'Star Jedi',
       textTransform: 'lowercase'
     }
@@ -218,7 +218,7 @@ export const TopNav = withRouter((props: TopNavProps) =>{
           </Typography>
           {token && token !== "" && token !== undefined ? 
           (
-          <Button onClick={routeOuterRim} className={classes.toolbar_button}>the outer rim</Button>
+          <Button onClick={routeOuterRim} className={classes.toolbar_button}>watto's table</Button>
           ) : (
             null
           )}

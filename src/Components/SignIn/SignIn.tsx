@@ -65,7 +65,6 @@ const useStyles = makeStyles(() =>
           )}
         })
         history.push('/')
-        window.alert("You are logged in!")
       }
 
     const handleEmailChange = (

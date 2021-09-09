@@ -12,7 +12,7 @@ export const useFetchRim = () => {
         console.log(`this is the chosen number: ${outer_rim_call.rim.chosen_num}`)
         const result = await server_calls.outerRim(outer_rim_call.rim.chosen_num);
         console.log(`here is the result: ${result.result.properties.name}`)
-        const final_result = result.result.properties.name
+        const final_result = result.result.properties.name.toLowerCase()
         setData(final_result)
     };
 

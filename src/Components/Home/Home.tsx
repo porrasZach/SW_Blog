@@ -36,15 +36,15 @@ const useStyles = makeStyles({
     subheader_login: {
         fontFamily: 'Star Jedi',
         textAlign: 'center',
-        marginTop: '4rem',
-        color: 'lightgrey',
+        marginTop: '-6rem',
+        color: 'black',
         position: 'absolute',
     },
     h6: {
         fontFamily: 'Star Jedi',
         textAlign: 'center',
-        marginTop: '8rem',
-        color: 'lightgrey',
+        marginTop: '-3rem',
+        color: 'black',
         position: 'absolute',
     },
     img: {
@@ -54,7 +54,8 @@ const useStyles = makeStyles({
     },
     img_div: {
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginTop: '13rem'
     }
 })
 
@@ -64,10 +65,17 @@ export const Home = (props:Props) => {
     const token = useAppSelector((state) => state.root.user_token)
     return (
         <div className={classes.root}>
+            { token && token !== "" && token !== undefined ? 
+            (
+                null
+            ) : (
             <h1 className={classes.header}>mos eisley archives<br/> 
                 <span style={{fontFamily: 'impact'}}>&</span> 
                 &nbsp;cantina blog
             </h1>
+            )
+            }
+            
             { token && token !== "" && token !== undefined ? 
             (
                 <div className={classes.img_div}>

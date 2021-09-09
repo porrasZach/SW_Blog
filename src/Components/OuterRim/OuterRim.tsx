@@ -1,14 +1,8 @@
-import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
-import { Button,
-  Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, IconButton,
-  Typography } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Button } from '@material-ui/core';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { useAppSelector } from '../../redux/hooks';
 import { useHistory } from 'react-router';
-import { useFetchBlogs } from '../../custom-hooks/FetchBlogs';
 import { useFetchRim } from '../../custom-hooks/FetchRim';
 
 
@@ -24,13 +18,26 @@ const useStyles = makeStyles((theme: Theme) =>
         position: 'absolute',
         zIndex: -1,
         padding: '0',
-        margin: '0'
+        margin: '0',
+        display: 'flex',
+        justifyContent: 'center'
     },
     card: {
-        margin: 'auto',
-        marginTop: '50%',
+        margin: '13% auto auto auto',
         height: 140,
-        width: 120,
+        width: 'auto',
+        fontFamily: 'Star Jedi',
+        textAlign: 'center',
+        fontSize: '6rem',
+        color: 'rgb(0, 0, 0, .7)'
+    },
+    button: {
+      position: 'absolute',
+      marginTop: '27rem',
+      backgroundColor: 'rgb(255, 225, 148, .8)',
+    '&:hover': {
+      backgroundColor: 'rgb(255, 225, 148)'
+    },
     }
   }),
 );
@@ -38,14 +45,18 @@ const useStyles = makeStyles((theme: Theme) =>
 export const OuterRim = () => {
     const classes = useStyles();
     const history = useHistory();
-    const token = useAppSelector((state) => state.root.user_token)
     const { rimData, getData } = useFetchRim();
+
+    const routeBack = () => {
+      history.push('/outer-rim')
+    }
 
   return (
     <div className={classes.root}>
         <h1 className={classes.card}>
           {rimData}
         </h1>
+        <Button className={classes.button} onClick={routeBack}>Back to Watto's dice</Button>
     </div>
   );
 }
