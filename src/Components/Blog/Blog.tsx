@@ -8,6 +8,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { useHistory } from 'react-router';
 import { useFetchBlogs } from '../../custom-hooks/FetchBlogs';
+import cantina_scene from '../../assets/Images/cantina.jpg';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -27,11 +28,23 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     link: {
       margin: '7rem auto 0 5rem',
-      display: 'inline'
+      display: 'inline',
+      backgroundColor: 'rgb(87, 204, 153, .7)',
+    '&:hover': {
+      backgroundColor: 'rgb(100, 204, 153)'
+      },
+    },
+    cantina: {
+      position: 'absolute',
+      top: '11rem',
+      left: '5rem',
+      borderRadius: '20px'
     },
     blog_list: {
       maxWidth: 340,
-      margin: '5rem auto auto 60%'
+      margin: '2rem auto auto 63%',
+      backgroundColor: 'rgb(61, 178, 255, .8)',
+      border: '9px solid rgb(34, 87, 122, .3)'
     },
     expand: {
       transform: 'rotate(0deg)',
@@ -75,7 +88,7 @@ export const Blog = () => {
     };
 
 
-    const blogList = blogData.slice(-3).map((blogPost:any) =>
+    const blogList = blogData.slice(-1).map((blogPost:any) =>
     <Card className={classes.blog_list}>
             <CardHeader
                 title= {blogPost.post_title}
@@ -124,7 +137,10 @@ export const Blog = () => {
     <div className={classes.root}>
         <Button onClick={blogLink} className={classes.link}>
           Contribute to the Blog
-        </Button>          
+        </Button>
+        <img 
+        src={cantina_scene} 
+        className={classes.cantina} alt="cantina scene" />
           {blogList}
     </div>
   );

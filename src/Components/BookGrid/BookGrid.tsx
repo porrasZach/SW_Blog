@@ -1,10 +1,18 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { chooseBookID, chooseDescription, chooseAuthor, chooseReleaseYear, chooseTitle } from '../../redux/slices/bookSlice';
+import { chooseBookID, 
+  chooseDescription, 
+  chooseAuthor, 
+  chooseReleaseYear, 
+  chooseTitle } from '../../redux/slices/bookSlice';
 import { server_calls } from '../../api';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { makeStyles } from '@material-ui/styles';
-import { Grid, Card, CardContent, Button, Typography } from '@material-ui/core';
+import { Grid, 
+  Card, 
+  CardContent, 
+  Button, 
+  Typography } from '@material-ui/core';
 import { useGetData } from '../../custom-hooks';
 import { useHistory } from 'react-router';
 import book from '../../assets/Images/book.png';
@@ -12,7 +20,8 @@ import book from '../../assets/Images/book.png';
 
 const useStyles = makeStyles({
   root: {
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)), url(${desert_hills});`,
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), 
+      rgba(0, 0, 0, 0.7)), url(${desert_hills});`,
     width: '100%',
     minWidth: 275,
     height: '100%',
@@ -30,7 +39,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: '1rem'
+    marginTop: '3rem'
   },
   book: {
     height: 140,
@@ -82,6 +91,7 @@ const useStyles = makeStyles({
   }
 })
 
+
 export const BookGrid = () => {
   const classes = useStyles();
   const history = useHistory();
@@ -116,7 +126,8 @@ export const BookGrid = () => {
   }
   
   const bookCards = bookData
-  .filter((book:HTMLObjectElement) => book.title.toLowerCase().includes(filter.toLowerCase()))
+  .filter((book:HTMLObjectElement) => 
+  book.title.toLowerCase().includes(filter.toLowerCase()))
   .map((book:any) =>
   <Card 
     key={book.id} 
@@ -147,16 +158,25 @@ export const BookGrid = () => {
             className={classes.input}
           ></input>
           </label>
-          <Button className={classes.delete} onClick={deleteData} size="small">Delete Selection</Button>
-          <Button className={classes.view} onClick={viewData} size="small">View Selection</Button>
-          <Button className={classes.add} onClick={addBook} size="small">Add Entry</Button>
+          <Button 
+          className={classes.delete} 
+          onClick={deleteData} 
+          size="small">Delete Selection</Button>
+          <Button 
+          className={classes.view} 
+          onClick={viewData} 
+          size="small">View Selection</Button>
+          <Button 
+          className={classes.add} 
+          onClick={addBook} 
+          size="small">Add Entry</Button>
 
         </div>
           <Grid 
             className={classes.container}
             container 
             direction="row" 
-            justifyContent="space-around" 
+            justifyContent="flex-end" 
             alignItems="center" 
             spacing={1}
           >

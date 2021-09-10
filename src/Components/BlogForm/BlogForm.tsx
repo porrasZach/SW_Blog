@@ -27,7 +27,7 @@ const useStyles = makeStyles({
     },
     form:{
         marginTop: '6rem',
-        width: '20rem',
+        width: '15rem',
         height: '25rem',
         marginLeft: '10rem',
         backgroundColor: 'rgb(255, 153, 0, .5)',
@@ -86,11 +86,13 @@ export const BlogForm = (props:BlogFormProps) => {
 
     return (
         <div className={classes.root}>
-            <img src={cantina} className={classes.cantina} alt="han solo in cantina" />
+            <img 
+            src={cantina} 
+            className={classes.cantina} alt="han solo in cantina" />
                 <form 
                 className={classes.form} 
                 onSubmit = {handleSubmit(onSubmit)}>
-                <h2 className={classes.jedi}>Report from the Cantina</h2>
+                <h2 className={classes.jedi}>From the Cantina...</h2>
                     <br />
                     <div>
                         <TextField 

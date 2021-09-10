@@ -1,7 +1,6 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
-import { useAppSelector } from '../../redux/hooks';
 import { useHistory } from 'react-router';
 import { useFetchRim } from '../../custom-hooks/FetchRim';
 
@@ -9,7 +8,8 @@ import { useFetchRim } from '../../custom-hooks/FetchRim';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root:{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)), url(${desert_hills});`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), 
+          rgba(0, 0, 0, 0.7)), url(${desert_hills});`,
         width: '100%',
         height: '100%',
         backgroundSize: 'cover',
@@ -56,7 +56,9 @@ export const OuterRim = () => {
         <h1 className={classes.card}>
           {rimData}
         </h1>
-        <Button className={classes.button} onClick={routeBack}>Back to Watto's dice</Button>
+        <Button 
+        className={classes.button} 
+        onClick={routeBack}>Back to Watto's dice</Button>
     </div>
   );
 }

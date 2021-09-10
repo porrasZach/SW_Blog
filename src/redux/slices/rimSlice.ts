@@ -8,7 +8,8 @@ const rimSlice = createSlice({
         chosen_num: '1'
     },
     reducers: {
-        chooseChosenNum: (state, action) => { state.chosen_num = action.payload }
+        chooseChosenNum: (state, action) => 
+        { state.chosen_num = action.payload }
     }
 })
 

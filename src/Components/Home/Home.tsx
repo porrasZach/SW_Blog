@@ -7,10 +7,10 @@ interface Props{
     title: string;
 }
 
-
 const useStyles = makeStyles({
     root:{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)), url(${desert_hills});`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), 
+            rgba(0, 0, 0, 0.7)), url(${desert_hills});`,
         width: '100%',
         height: '100%',
         backgroundSize: 'cover',
@@ -79,12 +79,17 @@ export const Home = (props:Props) => {
             { token && token !== "" && token !== undefined ? 
             (
                 <div className={classes.img_div}>
-                    <h2 className={classes.subheader_login}>welcome, traveler!</h2>
-                    <h6 className={classes.h6}>access data via index</h6>
-                    <img src={luke_mando} className={classes.img} alt="luke_mandalorian" />
+                    <h2 
+                    className={classes.subheader_login}>welcome, traveler!</h2>
+                    <h6 
+                    className={classes.h6}>access data via index</h6>
+                    <img src={luke_mando} 
+                    className={classes.img} 
+                    alt="luke_mandalorian" />
                 </div>
             ) : (
-            <h3 className={classes.subheader_logout} >Please login or signup</h3>
+            <h3 
+            className={classes.subheader_logout} >Please login or signup</h3>
             )
             }
         </div>

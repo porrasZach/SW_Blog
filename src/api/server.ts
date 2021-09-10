@@ -10,12 +10,12 @@ export const server_calls = {
                 'access-token': `Bearer ${token}`
             }
         });
-
         if (!response.ok){
             throw new Error('Failed to fetch data (many) from server')
         }
         return await response.json()
     },
+
 
     getOne: async (token:string,db_table:string,id:string) => {
         const response = await fetch(`/api/${db_table}/${id}`,{
@@ -25,13 +25,12 @@ export const server_calls = {
                 'access-token': `Bearer ${token}`
             }
         });
-
         if (!response.ok){
             throw new Error('Failed to fetch data (one) from server')
         }
-
         return await response.json()
     },
+
 
     create: async(token:string, db_table:string, data:any = {}) => {
         const response = await fetch(`/api/${db_table}`,{
@@ -42,13 +41,13 @@ export const server_calls = {
             },
             body: JSON.stringify(data)
         });
-
         if(!response.ok){
             throw new Error('Failed to create new data on server')
         }
-
         return await response.json()
     },
+
+
     update: async (token:string,db_table:string,id:string, data:any = {}) => {
         const response = await fetch(`/api/${db_table}/${id}`, {
             method: 'POST',
@@ -62,6 +61,8 @@ export const server_calls = {
             throw new Error('Failed to edit data in the database!')
         }
     },
+
+
     delete: async(token:string,db_table:string,id:string) => {
         const response = await fetch(`/api/${db_table}/${id}`,{
             method: 'DELETE',
@@ -74,6 +75,8 @@ export const server_calls = {
             throw new Error('Failed to delete data from the database!')
         }
     },
+
+    
     outerRim: async(id:string) => {
         const response = await fetch(`https://www.swapi.tech/api/people/${id}`)
         .then(res => res.json())

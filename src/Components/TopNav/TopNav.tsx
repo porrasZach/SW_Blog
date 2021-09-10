@@ -16,11 +16,11 @@ import { Drawer as MUIDrawer,
     Button
 } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import saber_icon from '../../assets/Icons/light-saber.svg';
 import { RouteComponentProps, withRouter} from "react-router-dom";
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import { chooseUserToken } from '../../redux/slices/rootSlice';
+import milk from '../../assets/Images/milk.png';
 
 
 export const sandTheme = createTheme({
@@ -52,7 +52,7 @@ export const sandTheme = createTheme({
 
 
 
-const drawerWidth = 220;
+const drawerWidth = 100;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -68,9 +68,11 @@ const useStyles = makeStyles((theme: Theme) =>
     drawer: {
       width: drawerWidth,
       flexShrink: 0,
+      fontFamily: 'Star Jedi'
     },
     drawerPaper: {
       width: drawerWidth,
+      backgroundColor: 'lightgrey'
     },
     drawerHeader: {
       display: 'flex',
@@ -78,6 +80,7 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(0, 1),
       ...theme.mixins.toolbar,
       justifyContent: 'left',
+      backgroundColor: 'grey'
     },
     content: {
       flexGrow: 1,
@@ -95,8 +98,12 @@ const useStyles = makeStyles((theme: Theme) =>
       }),
       marginLeft: 0,
     },
-    sabers: {
-      height: '2rem'
+    milk: {
+      height: '4rem'
+    },
+    milk_button: {
+      padding: '0',
+      marginRight: '1rem'
     },
     typo: {
       fontFamily: 'Star Jedi'
@@ -118,7 +125,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const SaberIcon = () =>{
   const classes = useStyles();
   return (
-    <img src={saber_icon} className={classes.sabers} alt={'lightsaber icon'} />
+    <img src={milk} className={classes.milk} alt={'blue milk icon'} />
   );
 }
 
@@ -191,7 +198,7 @@ export const TopNav = withRouter((props: TopNavProps) =>{
       onClick: () => history.push('/archive')
     },
     {
-      text: 'Mos Eisley Blog',
+      text: 'Cantina Blog',
       onClick: () => history.push('/blog')
     }
   ]
@@ -204,7 +211,7 @@ export const TopNav = withRouter((props: TopNavProps) =>{
         <AppBar
         position="fixed">
         <Toolbar className={classes.toolbar}>
-          <IconButton onClick={handleNavOpen}>
+          <IconButton className={classes.milk_button} onClick={handleNavOpen}>
             <SaberIcon />
           </IconButton>
           <Typography className={classes.typo} variant="h6" noWrap>
@@ -227,10 +234,7 @@ export const TopNav = withRouter((props: TopNavProps) =>{
         variant="persistent"
         anchor="top"
         open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        >
+        classes={{paper: classes.drawerPaper,}}>
           <div className={classes.drawerHeader}>
             <IconButton onClick={handleNavClose}>
             <SaberIcon />

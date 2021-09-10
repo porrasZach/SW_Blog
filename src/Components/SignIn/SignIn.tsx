@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { makeStyles, createStyles, TextField, Button } from "@material-ui/core";
+import { makeStyles, 
+  createStyles, 
+  TextField, 
+  Button } from "@material-ui/core";
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { chooseUserToken } from "../../redux/slices/rootSlice";
@@ -9,7 +12,8 @@ import { useHistory } from "react-router";
 const useStyles = makeStyles(() =>
   createStyles({
     root:{
-      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)), url(${desert_hills});`,
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), 
+        rgba(0, 0, 0, 0.7)), url(${desert_hills});`,
       width: '100%',
       height: '100%',
       backgroundSize: 'cover',
@@ -91,30 +95,35 @@ const useStyles = makeStyles(() =>
         <div className={classes.form}>
           <h2 className={classes.h2}>Login</h2>
           <br />
-          {token && token !== "" && token !== undefined ? ("You have logged in!") : (
-            <form action="#">
-            <div>
-              <TextField type="text" 
-                placeholder="email" 
-                onChange={handleEmailChange}
-                value={email} 
-              />
-            </div>
-            <br />
-            <div>
-              <TextField
-                type="password"
-                placeholder="Password"
-                onChange={handlePasswordChange}
-                value={password}
-              />
-            </div>
-            <br />
-            <Button className={classes.submit} onClick={onSubmitClick} type="submit">
-              Login
-            </Button>
-          </form>
-          )}
+          {token && token !== "" && token !== undefined ? 
+            (
+            "You have logged in!"
+             ) : (
+                <form action="#">
+                <div>
+                  <TextField type="text" 
+                    placeholder="email" 
+                    onChange={handleEmailChange}
+                    value={email} 
+                  />
+                </div>
+                <br />
+                <div>
+                  <TextField
+                    type="password"
+                    placeholder="Password"
+                    onChange={handlePasswordChange}
+                    value={password}
+                  />
+                </div>
+                <br />
+                <Button 
+                className={classes.submit} 
+                onClick={onSubmitClick} type="submit">
+                  Login
+                </Button>
+              </form>
+            )}
         </div>
       </div>
     )

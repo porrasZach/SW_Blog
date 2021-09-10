@@ -1,7 +1,4 @@
-import { useDispatch, useStore } from 'react-redux';
-import { useForm } from 'react-hook-form';
 import { chooseChosenNum } from '../../redux/slices/rimSlice';
-import { Input, LongInput } from '../sharedComponents/Input';
 import { Button, makeStyles } from '@material-ui/core';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { useHistory } from 'react-router';
@@ -13,7 +10,8 @@ import { useState } from 'react';
 
 const useStyles = makeStyles({
     root:{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)), url(${desert_hills});`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), 
+            rgba(0, 0, 0, 0.7)), url(${desert_hills});`,
         width: '100%',
         height: '100%',
         backgroundSize: 'cover',
@@ -90,17 +88,23 @@ export const OuterRimForm = () => {
 
                 {rolled == true ? 
                 (
-                    <img className={classes.watto_die} src={watto_die_rolled} alt="watto_dice" />
+                    <img 
+                    className={classes.watto_die} 
+                    src={watto_die_rolled} alt="watto_dice" />
                 ) : (
-                    <img className={classes.watto_die} src={watto_die} alt="watto_dice" />
+                    <img 
+                    className={classes.watto_die} 
+                    src={watto_die} alt="watto_dice" />
                 )
-
                 }
-                
-                <h2 className={classes.watto_text}>Roll Watto's dice</h2>
+                <h2 className={classes.watto_text}>Roll Watto's dice<br/></h2>
                     <div className={classes.buttons}>
-                        <Button className={classes.submit} onClick={onDiceRoll} >Roll</Button>
-                        <Button className={classes.submit} onClick={routeOuterRim} >See Result</Button>
+                        <Button 
+                        className={classes.submit} 
+                        onClick={onDiceRoll} >Roll</Button>
+                        <Button 
+                        className={classes.submit} 
+                        onClick={routeOuterRim} >See Result</Button>
                     </div>   
                 </div>
         </div>

@@ -3,7 +3,6 @@ import { server_calls } from '../api';
 import { useAppSelector } from '../redux/hooks';
 
 export const useFetchRim = () => {
-    // let token = useAppSelector((state) => state.root.user_token)
     const outer_rim_call = useAppSelector((state) => state)
     const [rimData, setData] = useState<any>([]);
 

@@ -9,7 +9,8 @@ import jedi_texts from '../../assets/Images/jedi_texts.png';
 
 const useStyles = makeStyles({
     root:{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)), url(${desert_hills});`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), 
+            rgba(0, 0, 0, 0.7)), url(${desert_hills});`,
         width: '100%',
         height: '100%',
         backgroundSize: 'cover',
@@ -63,7 +64,10 @@ export const BookZoom = () => {
     }
     return(
         <div className={classes.root}>
-            <img src={jedi_texts} className={classes.jedi_texts} alt="ancient jedi texts" />
+            <img 
+            src={jedi_texts} 
+            className={classes.jedi_texts} 
+            alt="ancient jedi texts" />
             <Card className={classes.paper}>
                 <CardContent className={classes.paper_top}>
                     <Typography component="h2" variant="h5">
@@ -74,7 +78,9 @@ export const BookZoom = () => {
                         {book.release_year}
                     </Typography>
                 </CardContent>
-                    <Typography className={classes.paper_body} component="p" variant="body1">
+                    <Typography 
+                    className={classes.paper_body} 
+                    component="p" variant="body1">
                         {book.description}
                     </Typography>
                 <CardContent>
