@@ -100,6 +100,8 @@ export const BookGrid = () => {
   const [ filter, filterSet ] = useState('');
   const dispatch = useAppDispatch();
   let token = useAppSelector((state) => state.root.user_token)
+  const user_name = useAppSelector((state) => 
+    state.root.user_name ).toLowerCase()
   
 
   let deleteData = () => {
@@ -147,7 +149,7 @@ export const BookGrid = () => {
   
     return (
       <div className={classes.root}>
-        <h2 className={classes.jedi}>Your Archives</h2>
+        <h2 className={classes.jedi}>{user_name}'s Archives</h2>
         <br />
         <div>
           <label>
