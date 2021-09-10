@@ -17,8 +17,9 @@ def create_token():
     if logged_user and check_password_hash(logged_user.password, password):
         login_user(logged_user)
         access_token = logged_user.token
-        print(access_token)
-        return jsonify(access_token=access_token)
+        user_name = logged_user.user_name
+        print(access_token, user_name)
+        return jsonify(access_token=access_token, user_name=user_name)
     else:
         return jsonify({"msg": "Bad username or password"}), 401
 

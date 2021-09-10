@@ -63,6 +63,8 @@ const useStyles = makeStyles({
 export const Home = (props:Props) => {
     const classes = useStyles();
     const token = useAppSelector((state) => state.root.user_token)
+    const user_name = useAppSelector((state) => 
+        state.root.user_name ).toLowerCase()
     return (
         <div className={classes.root}>
             { token && token !== "" && token !== undefined ? 
@@ -80,7 +82,7 @@ export const Home = (props:Props) => {
             (
                 <div className={classes.img_div}>
                     <h2 
-                    className={classes.subheader_login}>welcome, traveler!</h2>
+                    className={classes.subheader_login}>welcome, {user_name}!</h2>
                     {/* <h6 
                     className={classes.h6}>access data via archive index</h6> */}
                     <img src={luke_mando} 

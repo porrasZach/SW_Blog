@@ -5,7 +5,7 @@ import { makeStyles,
   Button } from "@material-ui/core";
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { chooseUserToken } from "../../redux/slices/rootSlice";
+import { chooseUserName, chooseUserToken } from "../../redux/slices/rootSlice";
 import { useHistory } from "react-router";
 
 
@@ -71,7 +71,8 @@ const useStyles = makeStyles(() =>
           {data.msg && data.msg === "Bad username or password" ? (
             window.alert("Invalid, please try again!")
           ) : (
-            dispatch(chooseUserToken(data.access_token))
+            dispatch(chooseUserToken(data.access_token)) &&
+            dispatch(chooseUserName(data.user_name))
           )}
         })
         history.push('/')
