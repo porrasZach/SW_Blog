@@ -42,7 +42,8 @@ const useStyles = makeStyles({
         fontFamily: 'Star Jedi',
         position: 'absolute',
         top: '22rem',
-        color: 'darkgrey'
+        color: 'darkgrey',
+        textAlign: 'center'
     },
     med_div: {
         display: 'flex',
@@ -97,7 +98,7 @@ export const OuterRimForm = () => {
                     src={watto_die} alt="watto_dice" />
                 )
                 }
-                <h2 className={classes.watto_text}>Roll Watto's dice<br/></h2>
+                <h2 className={classes.watto_text}>Roll Watto's dice<br/>and let fate decide...</h2>
                     <div className={classes.buttons}>
                         <Button 
                         className={classes.submit} 

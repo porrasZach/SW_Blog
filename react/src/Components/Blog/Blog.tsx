@@ -136,7 +136,7 @@ export const Blog = () => {
   return (
     <div className={classes.root}>
         <Button onClick={blogLink} className={classes.link}>
-          Contribute to the Blog
+          Contribute to the Forum
         </Button>
         <img 
         src={cantina_scene} 

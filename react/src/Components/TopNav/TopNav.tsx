@@ -198,7 +198,7 @@ export const TopNav = withRouter((props: TopNavProps) =>{
       onClick: () => history.push('/archive')
     },
     {
-      text: 'Cantina Blog',
+      text: 'Cantina Forum',
       onClick: () => history.push('/blog')
     }
   ]

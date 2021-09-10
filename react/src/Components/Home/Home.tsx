@@ -71,7 +71,7 @@ export const Home = (props:Props) => {
             ) : (
             <h1 className={classes.header}>mos eisley archives<br/> 
                 <span style={{fontFamily: 'impact'}}>&</span> 
-                &nbsp;cantina blog
+                &nbsp;cantina forum
             </h1>
             )
             }
@@ -81,8 +81,8 @@ export const Home = (props:Props) => {
                 <div className={classes.img_div}>
                     <h2 
                     className={classes.subheader_login}>welcome, traveler!</h2>
-                    <h6 
-                    className={classes.h6}>access data via index</h6>
+                    {/* <h6 
+                    className={classes.h6}>access data via archive index</h6> */}
                     <img src={luke_mando} 
                     className={classes.img} 
                     alt="luke_mandalorian" />
