@@ -188,7 +188,7 @@ export const TopNav = withRouter((props: TopNavProps) =>{
       text: 'Log Out',
       onClick: () => {
         dispatch(chooseUserToken(''))
-        history.push('/signin')
+        history.push('/')
         window.location.reload();
         console.log("Logged Out")
       }

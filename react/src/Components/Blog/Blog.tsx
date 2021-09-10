@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import { Button,
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     blog_list: {
       maxWidth: 340,
-      margin: '2rem auto auto 63%',
+      margin: '0 auto auto 63%',
       backgroundColor: 'rgb(61, 178, 255, .8)',
       border: '9px solid rgb(34, 87, 122, .3)'
     },
@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const Blog = () => {
     const classes = useStyles();
     const history = useHistory();
-    const [expanded, setExpanded] = React.useState(false);
+    const [expanded, setExpanded] = useState(false);
     const { blogData, getData } = useFetchBlogs();
     
 // WILL ADD BLOG AUTHOR IN THE FUTURE; ISSUE WITH SQL DB RELATIONSHIPS
@@ -88,7 +88,7 @@ export const Blog = () => {
     };
 
 
-    const blogList = blogData.slice(-1).map((blogPost:any) =>
+    const blogList = blogData.slice(-2).reverse().map((blogPost:any) =>
     <Card className={classes.blog_list}>
             <CardHeader
                 title= {blogPost.post_title}
