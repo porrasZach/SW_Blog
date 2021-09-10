@@ -21,7 +21,6 @@ import { RouteComponentProps, withRouter} from "react-router-dom";
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import { chooseUserToken } from '../../redux/slices/rootSlice';
-import { useLocation } from 'react-router';
 
 
 export const sandTheme = createTheme({
@@ -195,11 +194,6 @@ export const TopNav = withRouter((props: TopNavProps) =>{
       text: 'Mos Eisley Blog',
       onClick: () => history.push('/blog')
     }
-    // ,
-    // {
-    //   text: 'Contribute to Blog',
-    //   onClick: () => history.push('/write-blog')
-    // }
   ]
 
   return (
@@ -218,7 +212,10 @@ export const TopNav = withRouter((props: TopNavProps) =>{
           </Typography>
           {token && token !== "" && token !== undefined ? 
           (
-          <Button onClick={routeOuterRim} className={classes.toolbar_button}>watto's table</Button>
+          <Button 
+          onClick={routeOuterRim} 
+          className={classes.toolbar_button}>
+            watto's table</Button>
           ) : (
             null
           )}

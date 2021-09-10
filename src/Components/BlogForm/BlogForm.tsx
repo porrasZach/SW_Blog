@@ -1,18 +1,20 @@
-import { useDispatch, useStore } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { chooseTitle, chooseAuthor, chooseReleaseYear, chooseDescription } from '../../redux/slices/bookSlice';
-import { Input, LongInput } from '../sharedComponents/Input';
-import { Button, makeStyles } from '@material-ui/core';
+import { Button, makeStyles, TextField } from '@material-ui/core';
 import { server_calls } from '../../api';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { useHistory } from 'react-router';
 import { useAppSelector } from '../../redux/hooks';
-import { choosePostTitle, chooseSubtitle, chooseBody } from '../../redux/slices/blogSlice';
+import { choosePostTitle, 
+    chooseSubtitle, 
+    chooseBody } from '../../redux/slices/blogSlice';
+import cantina from '../../assets/Images/han_cantina.jpg';
 
 
 const useStyles = makeStyles({
     root:{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)), url(${desert_hills});`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), 
+            rgba(0, 0, 0, 0.7)), url(${desert_hills});`,
         width: '100%',
         height: '100%',
         backgroundSize: 'cover',
@@ -26,7 +28,7 @@ const useStyles = makeStyles({
     form:{
         marginTop: '6rem',
         width: '20rem',
-        height: '27rem',
+        height: '25rem',
         marginLeft: '10rem',
         backgroundColor: 'rgb(255, 153, 0, .5)',
         border: '1px solid rgb(255, 153, 0, .5)',
@@ -47,6 +49,12 @@ const useStyles = makeStyles({
     '&:hover': {
       backgroundColor: 'rgb(100, 204, 153)'
     },
+    },
+    cantina: {
+        position: 'absolute',
+        right: '8rem',
+        top: '10rem',
+        borderRadius: '20px'
     }
 })
 
@@ -78,20 +86,43 @@ export const BlogForm = (props:BlogFormProps) => {
 
     return (
         <div className={classes.root}>
-                <form className={classes.form} onSubmit = {handleSubmit(onSubmit)}>
-                <h2 className={classes.jedi}>Create a New Blog Post</h2>
+            <img src={cantina} className={classes.cantina} alt="han solo in cantina" />
+                <form 
+                className={classes.form} 
+                onSubmit = {handleSubmit(onSubmit)}>
+                <h2 className={classes.jedi}>Report from the Cantina</h2>
+                    <br />
                     <div>
-                        <Input {...register('post_title')} name="post_title" placeholder='post title'/>
+                        <TextField 
+                        inputProps={{maxLength: 100}} 
+                        maxRows='1' multiline={true} 
+                        {...register('post_title')} 
+                        name="post_title" placeholder='post title'/>
                     </div>
+                    <br />
                     <div>
-                        <Input {...register('sub_title')} name="sub_title" placeholder="subtitle"/>
+                        <TextField 
+                        inputProps={{maxLength: 200}} 
+                        maxRows='1' multiline={true} 
+                        {...register('sub_title')} 
+                        name="sub_title" placeholder="subtitle"/>
                     </div>
+                    <br />
                     <div>
-                        <Input {...register('body')} name="body" placeholder="" />
+                        <TextField 
+                        minRows='6' 
+                        maxRows='6' 
+                        multiline={true} 
+                        inputProps={{maxLength: 5000}} 
+                        {...register('body')} 
+                        name="body" placeholder="body - max 5000 char" />
                     </div>
                     <Button type='submit'>Create</Button>
                 </form>
-                <Button className={classes.submit} onClick={createBlogPost}>Submit</Button>
+                <Button 
+                className={classes.submit} 
+                onClick={createBlogPost}>
+                    Submit</Button>
         </div>
     )
 }

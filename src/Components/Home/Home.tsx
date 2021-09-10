@@ -23,7 +23,7 @@ const useStyles = makeStyles({
     },
     header:{
         fontFamily: 'Star Jedi',
-        marginTop: '5rem',
+        marginTop: '8rem',
         fontSize: '3rem',
         textAlign: 'center'
     },

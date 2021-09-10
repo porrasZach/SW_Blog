@@ -1,17 +1,21 @@
-import { useDispatch, useStore } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { chooseTitle, chooseAuthor, chooseReleaseYear, chooseDescription } from '../../redux/slices/bookSlice';
-import { Input, LongInput } from '../sharedComponents/Input';
-import { Button, makeStyles } from '@material-ui/core';
+import { chooseTitle, 
+    chooseAuthor, 
+    chooseReleaseYear, 
+    chooseDescription } from '../../redux/slices/bookSlice';
+import { Button, makeStyles, TextField } from '@material-ui/core';
 import { server_calls } from '../../api';
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { useHistory } from 'react-router';
 import { useAppSelector } from '../../redux/hooks';
+import falcon from '../../assets/Images/falcon.png';
 
 
 const useStyles = makeStyles({
     root:{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)), url(${desert_hills});`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), 
+            rgba(0, 0, 0, 0.7)), url(${desert_hills});`,
         width: '100%',
         height: '100%',
         backgroundSize: 'cover',
@@ -32,6 +36,9 @@ const useStyles = makeStyles({
         borderRadius: '5px',
         padding: '10px'
     },
+    form_div: {
+
+    },
     input:{
         height: '8rem'
     },
@@ -46,6 +53,13 @@ const useStyles = makeStyles({
     '&:hover': {
       backgroundColor: 'rgb(100, 204, 153)'
     },
+    },
+    falcon: {
+        position: 'absolute',
+        height: '35%',
+        width: 'auto',
+        bottom: '10rem',
+        right: '7rem'
     }
 })
 
@@ -78,23 +92,53 @@ export const BookForm = (props:BookFormProps) => {
 
     return (
         <div className={classes.root}>
-                <form className={classes.form} onSubmit = {handleSubmit(onSubmit)}>
+            <div className={classes.form_div}>
+            <form className={classes.form} onSubmit = {handleSubmit(onSubmit)}>
                 <h2 className={classes.jedi}>upload to Your Archives</h2>
+                    <br />
                     <div>
-                        <Input {...register('title')} name="title" placeholder='book title'/>
+                        <TextField 
+                        inputProps={{maxLength: 200}} 
+                        {...register('title')} 
+                        name="title" placeholder='book title'/>
                     </div>
+                    <br />
                     <div>
-                        <Input {...register('author')} name="author" placeholder="author"/>
+                        <TextField 
+                        inputProps={{maxLength: 150}} 
+                        {...register('author')} 
+                        name="author" placeholder="author"/>
                     </div>
+                    <br />
                     <div>
-                        <Input {...register('release_year')} name="release_year" placeholder="release year - [yyyy]" />
+                        <TextField 
+                        inputProps={{maxLength: 4}} 
+                        {...register('release_year')} 
+                        name="release_year" 
+                        placeholder="release year - [yyyy]" />
                     </div>
+                    <br />
                     <div>
-                        <LongInput {...register('description')} name="description" placeholder="description - max 500 char"/>
+                        <TextField 
+                        minRows='4' 
+                        maxRows='4' 
+                        multiline={true} 
+                        inputProps={{maxLength: 500}} 
+                        {...register('description')} 
+                        name="description" 
+                        placeholder="description - max 500 char"/>
                     </div>
+                    <br />
                     <Button type='submit'>Load</Button>
                 </form>
-                <Button className={classes.submit} onClick={createBook}>Post</Button>
+                <Button 
+                className={classes.submit} 
+                onClick={createBook}>
+                    Post</Button>
+            </div>
+                <img src={falcon} 
+                className={classes.falcon} 
+                alt="millennium falcon" />
         </div>
     )
 }

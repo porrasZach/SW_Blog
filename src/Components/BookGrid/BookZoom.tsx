@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Button, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router';
 import notebook from '../../assets/Images/notebook.png';
+import jedi_texts from '../../assets/Images/jedi_texts.png';
 
 
 const useStyles = makeStyles({
@@ -18,11 +19,17 @@ const useStyles = makeStyles({
         padding: '0',
         margin: '0',
     },
+    jedi_texts: {
+        position: 'absolute',
+        top: '15rem',
+        left: '6rem',
+        borderRadius: '30px 30px 30px 30px'
+    },
     paper: {
         height: 420,
         width: 360,
         marginTop: '11%',
-        marginLeft: '50%',
+        marginLeft: '60%',
         backgroundImage: `url(${notebook})`,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: '45% 40%',
@@ -56,13 +63,15 @@ export const BookZoom = () => {
     }
     return(
         <div className={classes.root}>
+            <img src={jedi_texts} className={classes.jedi_texts} alt="ancient jedi texts" />
             <Card className={classes.paper}>
                 <CardContent className={classes.paper_top}>
                     <Typography component="h2" variant="h5">
                         {book.title}
                     </Typography>
                     <Typography>
-                        {book.author}
+                        {book.author}<br/>
+                        {book.release_year}
                     </Typography>
                 </CardContent>
                     <Typography className={classes.paper_body} component="p" variant="body1">

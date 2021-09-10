@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { makeStyles, createStyles } from "@material-ui/core";
+import { makeStyles, createStyles, TextField, Button } from "@material-ui/core";
 import desert_hills from '../../assets/Images/desert_hills1.jpg';
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { chooseUserToken } from "../../redux/slices/rootSlice";
@@ -23,10 +23,16 @@ const useStyles = makeStyles(() =>
       justifyContent: 'center'
   },
     form: {
-        margin: '10rem auto'
+        margin: '8rem auto'
     },
     h2: {
       fontFamily: 'Star Jedi'
+    },
+    submit: {
+      backgroundColor: 'rgb(87, 204, 153, .7)',
+    '&:hover': {
+      backgroundColor: 'rgb(100, 204, 153)'
+      },
     }
   }));
 
@@ -88,7 +94,7 @@ const useStyles = makeStyles(() =>
           {token && token !== "" && token !== undefined ? ("You have logged in!") : (
             <form action="#">
             <div>
-              <input type="text" 
+              <TextField type="text" 
                 placeholder="email" 
                 onChange={handleEmailChange}
                 value={email} 
@@ -96,7 +102,7 @@ const useStyles = makeStyles(() =>
             </div>
             <br />
             <div>
-              <input
+              <TextField
                 type="password"
                 placeholder="Password"
                 onChange={handlePasswordChange}
@@ -104,9 +110,9 @@ const useStyles = makeStyles(() =>
               />
             </div>
             <br />
-            <button onClick={onSubmitClick} type="submit">
+            <Button className={classes.submit} onClick={onSubmitClick} type="submit">
               Login
-            </button>
+            </Button>
           </form>
           )}
         </div>
