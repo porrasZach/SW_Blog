@@ -16,7 +16,7 @@ This application aims to mimic a sort of digital forum and database for patrons 
 
 
 ## I intend on introducing further functionality to this application in the future, including the following:
-- User authentication & customizable profile management, including connecting with other users & custom avatars
+- Customizable user profiles, including connecting with other users & custom avatars
 - Blog posts with additional functionality
 - Option to upload images of books associated with archive entries
 - Possible web scraping feature to display data from youtini.com or another available online resource to bolster content
