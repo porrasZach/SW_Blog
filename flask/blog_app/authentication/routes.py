@@ -18,7 +18,6 @@ def create_token():
         login_user(logged_user)
         access_token = logged_user.token
         user_name = logged_user.user_name
-        print(access_token, user_name)
         return jsonify(access_token=access_token, user_name=user_name)
     else:
         return jsonify({"msg": "Bad username or password"}), 401
@@ -34,12 +33,10 @@ def signup():
     if email_taken:
         return jsonify({"msg": "Email taken"})
     else:
-        print(user_name, email, password)
         new_user = User(user_name, email, password)
         db.session.add(new_user)
         db.session.commit()
         access_token = new_user.token
-        print(access_token)
         return jsonify(access_token=access_token)
 
 

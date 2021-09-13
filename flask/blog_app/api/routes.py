@@ -16,18 +16,12 @@ def create_book(current_user_token):
     release_year = request.json['release_year']
     # date_created = current_user_token.date_created
     description = request.json['description']
-
     user_token = current_user_token.token
-
-    print('made it this far!')
     book = Book(title, author, release_year, description, user_token=user_token)
-
     db.session.add(book)
     db.session.commit()
-
     # passes back data as a dict object after added to db
     response = book_schema.dump(book)
-
     return jsonify(response)
 
 
@@ -62,9 +56,7 @@ def update_book(current_user_token, id):
         # book.date_created = current_user_token.date_created
         book.description = request.json['description']
         book.user_token = current_user_token.token
-
         db.session.commit()
-
         # passes back data as a dict object after added to db
         response = book_schema.dump(book)
         return jsonify(response)
@@ -91,17 +83,13 @@ def delete_book(current_user_token, id):
 @api.route('/blog', methods = ['POST'])
 @token_required
 def create_blog_post(current_user_token):
-    print(request.json)
     post_title = request.json['post_title']
     sub_title = request.json['sub_title']
     body = request.json['body']
     user_token = current_user_token.token
-
     blogPost = BlogPost(post_title, sub_title, body, user_token=user_token)
-
     db.session.add(blogPost)
     db.session.commit()
-
     # passes back data as a dict object after added to db
     response = blog_post_schema.dump(blogPost)
     return jsonify(response)
@@ -112,7 +100,6 @@ def create_blog_post(current_user_token):
 def get_all_blog_posts(current_user_token):
     blog_posts = BlogPost.query.all()
     response = blog_posts_schema.dump(blog_posts)
-    print(response)
     return jsonify(response)
 
 
