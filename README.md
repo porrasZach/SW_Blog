@@ -1,4 +1,4 @@
-*This is the original development repository for this project. The Heroku-hosted repo is located at https://github.com/zachPorras/mos-eisley-hosted *
+*This is the original development repository for this project. The Heroku-hosted repo is located at https://github.com/zachPorras/mos-eisley-hosted*
 
 
 # Mos Eisley Archives
