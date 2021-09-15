@@ -117,10 +117,13 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: '2rem',
 			color: 'black',
       fontFamily: 'Star Jedi',
-      textTransform: 'lowercase'
+      textTransform: 'lowercase',
+      positon: 'absolute',
+      right: '5rem'
+
     },
     github: {
-      margin: '0',
+      margin: 'auto 1rem auto auto',
 			color: 'black',
       fontFamily: 'Star Jedi',
       textTransform: 'lowercase'
