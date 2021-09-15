@@ -120,7 +120,7 @@ const useStyles = makeStyles((theme: Theme) =>
       textTransform: 'lowercase'
     },
     github: {
-      margin: '0 auto',
+      margin: '0',
 			color: 'black',
       fontFamily: 'Star Jedi',
       textTransform: 'lowercase'
