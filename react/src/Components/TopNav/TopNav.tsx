@@ -118,7 +118,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			color: 'black',
       fontFamily: 'Star Jedi',
       textTransform: 'lowercase',
-      positon: 'absolute',
+      position: 'absolute',
       right: '5rem'
 
     },
