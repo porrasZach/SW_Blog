@@ -21,6 +21,7 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import { chooseUserToken } from '../../redux/slices/rootSlice';
 import milk from '../../assets/Images/milk.png';
+import github from '../../assets/Icons/github.png';
 
 
 export const sandTheme = createTheme({
@@ -113,6 +114,13 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     toolbar_button: {
       marginLeft: 'auto',
+      marginRight: '2rem',
+			color: 'black',
+      fontFamily: 'Star Jedi',
+      textTransform: 'lowercase'
+    },
+    github: {
+      margin: '0',
 			color: 'black',
       fontFamily: 'Star Jedi',
       textTransform: 'lowercase'
@@ -226,6 +234,7 @@ export const TopNav = withRouter((props: TopNavProps) =>{
           ) : (
             null
           )}
+          <a className={classes.toolbar_button} href="https://github.com/zachPorras/mos-eisley-hosted"><img src={github} alt="github icon" /></a>
         </Toolbar>
         </AppBar>
         </ClickAwayListener>
