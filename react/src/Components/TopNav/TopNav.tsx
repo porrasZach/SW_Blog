@@ -114,6 +114,14 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     toolbar_button: {
       marginLeft: 'auto',
+      marginRight: '2rem',
+			color: 'black',
+      fontFamily: 'Star Jedi',
+      textTransform: 'lowercase'
+    },
+    github: {
+      marginLeft: '2rem',
+      marginRight: '2rem',
 			color: 'black',
       fontFamily: 'Star Jedi',
       textTransform: 'lowercase'
