@@ -1,3 +1,5 @@
+*This is the original development repository for this project.  The Heroku hosted repository for this project is located at https://github.com/zachPorras/mos-eisley-hosted.*
+
 # Mos Eisley Archives
 
 This project is a full-stack web application built upon a Flask back-end operating alongside a PostgreSQL database, with a React-Redux front-end styled primarily with Material-UI.
