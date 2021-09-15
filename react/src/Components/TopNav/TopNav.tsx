@@ -234,7 +234,7 @@ export const TopNav = withRouter((props: TopNavProps) =>{
           ) : (
             null
           )}
-          <a className={classes.toolbar_button} href="https://github.com/zachPorras/mos-eisley-hosted"><img src={github} alt="github icon" /></a>
+          <a className={classes.github} href="https://github.com/zachPorras/mos-eisley-hosted"><img src={github} alt="github icon" /></a>
         </Toolbar>
         </AppBar>
         </ClickAwayListener>
