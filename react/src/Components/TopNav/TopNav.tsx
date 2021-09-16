@@ -13,7 +13,8 @@ import { Drawer as MUIDrawer,
     IconButton,
     Typography,
     Divider,
-    Button
+    Button,
+    Link
 } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { RouteComponentProps, withRouter} from "react-router-dom";
@@ -108,6 +109,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     typo: {
       fontFamily: 'Star Jedi'
+    },
+    about: {
+      fontFamily: 'Star Jedi',
+      marginLeft: '45rem'
     },
     toolbar:{
       display: 'flex'
@@ -227,6 +232,11 @@ export const TopNav = withRouter((props: TopNavProps) =>{
           </IconButton>
           <Typography className={classes.typo} variant="h6" noWrap>
             archive index
+          </Typography>
+          <Typography className={classes.typo} variant="h6" noWrap>
+            <ListItem className={classes.about} button onClick={() => { history.push('/about') }}>
+            about
+            </ListItem>
           </Typography>
           {token && token !== "" && token !== undefined ? 
           (

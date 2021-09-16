@@ -11,7 +11,8 @@ import { Home,
   BookZoom, 
   SignIn, 
   SignUp, 
-  OuterRim, 
+  OuterRim,
+  About,
   OuterRimForm } from './Components';
 import { Blog } from './Components';
 import { Provider } from 'react-redux';
@@ -72,6 +73,11 @@ ReactDOM.render(
         <Switch>
           <Route path="/blog">
             <Blog />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route exact path="/about">
+            <About />
           </Route>
         </Switch>
         <Switch>
