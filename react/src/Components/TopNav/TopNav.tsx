@@ -112,7 +112,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     about: {
       fontFamily: 'Star Jedi',
-      marginLeft: '45rem'
+      marginLeft: '35rem'
     },
     toolbar:{
       display: 'flex'
